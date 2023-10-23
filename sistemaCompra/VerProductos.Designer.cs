@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pboxProductos = new PictureBox();
             dtgvListaProductos = new DataGridView();
             txtCodigo = new TextBox();
@@ -61,6 +62,14 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dtgvListaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgvListaProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtgvListaProductos.DefaultCellStyle = dataGridViewCellStyle2;
             dtgvListaProductos.Location = new Point(45, 185);
             dtgvListaProductos.Name = "dtgvListaProductos";
             dtgvListaProductos.ReadOnly = true;

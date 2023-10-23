@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pboxEliminar = new PictureBox();
             pboxEditar = new PictureBox();
             pnlDesplegar = new Panel();
@@ -161,10 +163,10 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblTelefono.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblTelefono.Location = new Point(38, 105);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(55, 15);
+            lblTelefono.Size = new Size(63, 13);
             lblTelefono.TabIndex = 75;
             lblTelefono.Text = "Teléfono";
             // 
@@ -229,60 +231,60 @@
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
-            lblDireccion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblDireccion.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblDireccion.Location = new Point(141, 105);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(59, 15);
+            lblDireccion.Size = new Size(70, 13);
             lblDireccion.TabIndex = 69;
             lblDireccion.Text = "Dirección";
             // 
             // lblCorreo
             // 
             lblCorreo.AutoSize = true;
-            lblCorreo.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblCorreo.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblCorreo.Location = new Point(49, 173);
             lblCorreo.Name = "lblCorreo";
-            lblCorreo.Size = new Size(43, 15);
+            lblCorreo.Size = new Size(49, 13);
             lblCorreo.TabIndex = 68;
             lblCorreo.Text = "E-mail";
             // 
             // lblIdentificacion
             // 
             lblIdentificacion.AutoSize = true;
-            lblIdentificacion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblIdentificacion.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblIdentificacion.Location = new Point(252, 29);
             lblIdentificacion.Name = "lblIdentificacion";
-            lblIdentificacion.Size = new Size(79, 15);
+            lblIdentificacion.Size = new Size(105, 13);
             lblIdentificacion.TabIndex = 67;
             lblIdentificacion.Text = "Identificación";
             // 
             // lblContribuyenteEspecial
             // 
             lblContribuyenteEspecial.AutoSize = true;
-            lblContribuyenteEspecial.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblContribuyenteEspecial.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblContribuyenteEspecial.Location = new Point(233, 132);
             lblContribuyenteEspecial.Name = "lblContribuyenteEspecial";
-            lblContribuyenteEspecial.Size = new Size(109, 15);
+            lblContribuyenteEspecial.Size = new Size(133, 13);
             lblContribuyenteEspecial.TabIndex = 66;
             lblContribuyenteEspecial.Text = "Contribuyente Esp.";
             // 
             // lblApellido
             // 
             lblApellido.AutoSize = true;
-            lblApellido.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblApellido.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblApellido.Location = new Point(155, 29);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(51, 15);
+            lblApellido.Size = new Size(63, 13);
             lblApellido.TabIndex = 65;
             lblApellido.Text = "Apellido";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblNombre.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             lblNombre.Location = new Point(49, 29);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(52, 15);
+            lblNombre.Size = new Size(49, 13);
             lblNombre.TabIndex = 64;
             lblNombre.Text = "Nombre";
             // 
@@ -423,7 +425,23 @@
             // 
             // dtgvListaClientes
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgvListaClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtgvListaClientes.DefaultCellStyle = dataGridViewCellStyle2;
             dtgvListaClientes.Location = new Point(21, 175);
             dtgvListaClientes.Margin = new Padding(3, 2, 3, 2);
             dtgvListaClientes.Name = "dtgvListaClientes";
