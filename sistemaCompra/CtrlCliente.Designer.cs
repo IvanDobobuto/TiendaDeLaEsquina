@@ -55,6 +55,8 @@
             pboxAgregar = new PictureBox();
             pboxCtrlClientes = new PictureBox();
             dtgvListaClientes = new DataGridView();
+            lblBuscarIdentificacion = new Label();
+            txtBuscarIdentificacion = new TextBox();
             pnlDesplegar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxAceptarEditar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxCancelar).BeginInit();
@@ -333,19 +335,38 @@
             // dtgvListaClientes
             // 
             dtgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListaClientes.Location = new Point(12, 174);
+            dtgvListaClientes.Location = new Point(12, 207);
             dtgvListaClientes.Margin = new Padding(3, 2, 3, 2);
             dtgvListaClientes.Name = "dtgvListaClientes";
             dtgvListaClientes.RowTemplate.Height = 25;
-            dtgvListaClientes.Size = new Size(884, 279);
+            dtgvListaClientes.Size = new Size(884, 246);
             dtgvListaClientes.TabIndex = 64;
             dtgvListaClientes.CellContentClick += dtgvListaClientes_CellClick;
+            // 
+            // lblBuscarIdentificacion
+            // 
+            lblBuscarIdentificacion.AutoSize = true;
+            lblBuscarIdentificacion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblBuscarIdentificacion.Location = new Point(22, 156);
+            lblBuscarIdentificacion.Name = "lblBuscarIdentificacion";
+            lblBuscarIdentificacion.Size = new Size(123, 15);
+            lblBuscarIdentificacion.TabIndex = 87;
+            lblBuscarIdentificacion.Text = "Buscar Identificación:";
+            // 
+            // txtBuscarIdentificacion
+            // 
+            txtBuscarIdentificacion.Location = new Point(22, 174);
+            txtBuscarIdentificacion.Name = "txtBuscarIdentificacion";
+            txtBuscarIdentificacion.Size = new Size(124, 23);
+            txtBuscarIdentificacion.TabIndex = 85;
             // 
             // CtrlCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1032, 476);
+            Controls.Add(lblBuscarIdentificacion);
+            Controls.Add(txtBuscarIdentificacion);
             Controls.Add(dtgvListaClientes);
             Controls.Add(txtCorreo);
             Controls.Add(cboxSiYNo);
@@ -419,5 +440,7 @@
         private ComboBox cboxSiYNo;
         private PictureBox pboxAceptarEditar;
         private DataGridView dtgvListaClientes;
+        private Label lblBuscarIdentificacion;
+        private TextBox txtBuscarIdentificacion;
     }
 }

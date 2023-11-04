@@ -298,10 +298,10 @@ namespace sistemaCompra
                     pnlDesplegar.Visible = true;
                     pboxAceptarEditar.Visible = true;
                 }
-            
 
-            // Verificar si se hizo clic en la columna de Eliminación
-            if (e.ColumnIndex == 1)
+
+                // Verificar si se hizo clic en la columna de Eliminación
+                if (e.ColumnIndex == 1)
                 {
                     string nombreUsuario = dtgvListaUsuarios.Rows[e.RowIndex].Cells[2].Value.ToString();
 

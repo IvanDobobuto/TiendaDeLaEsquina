@@ -57,6 +57,10 @@
             pboxBarra2 = new PictureBox();
             pboxBarra = new PictureBox();
             dtgvListaProductos = new DataGridView();
+            txtBuscarNombre = new TextBox();
+            txtBuscarCodigo = new TextBox();
+            lblBuscarNombre = new Label();
+            lblBuscarCodigo = new Label();
             ((System.ComponentModel.ISupportInitialize)pboxCtrlProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxAgregar).BeginInit();
             pnlDesplegar.SuspendLayout();
@@ -96,9 +100,9 @@
             // 
             pnlDesplegar.Controls.Add(pboxAceptarEditar);
             pnlDesplegar.Controls.Add(pboxCancelar);
-            pnlDesplegar.Location = new Point(941, 169);
+            pnlDesplegar.Location = new Point(941, 153);
             pnlDesplegar.Name = "pnlDesplegar";
-            pnlDesplegar.Size = new Size(115, 92);
+            pnlDesplegar.Size = new Size(113, 92);
             pnlDesplegar.TabIndex = 55;
             // 
             // pboxAceptarEditar
@@ -344,18 +348,56 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dtgvListaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgvListaProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListaProductos.Location = new Point(41, 169);
+            dtgvListaProductos.Location = new Point(26, 208);
             dtgvListaProductos.Name = "dtgvListaProductos";
             dtgvListaProductos.RowTemplate.Height = 25;
-            dtgvListaProductos.Size = new Size(894, 256);
+            dtgvListaProductos.Size = new Size(909, 256);
             dtgvListaProductos.TabIndex = 65;
             dtgvListaProductos.CellContentClick += dtgvListaProductos_CellClick;
+            // 
+            // txtBuscarNombre
+            // 
+            txtBuscarNombre.Location = new Point(269, 171);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(127, 23);
+            txtBuscarNombre.TabIndex = 80;
+            // 
+            // txtBuscarCodigo
+            // 
+            txtBuscarCodigo.Location = new Point(58, 171);
+            txtBuscarCodigo.Name = "txtBuscarCodigo";
+            txtBuscarCodigo.Size = new Size(124, 23);
+            txtBuscarCodigo.TabIndex = 81;
+            // 
+            // lblBuscarNombre
+            // 
+            lblBuscarNombre.AutoSize = true;
+            lblBuscarNombre.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblBuscarNombre.Location = new Point(267, 153);
+            lblBuscarNombre.Name = "lblBuscarNombre";
+            lblBuscarNombre.Size = new Size(96, 15);
+            lblBuscarNombre.TabIndex = 82;
+            lblBuscarNombre.Text = "Buscar Nombre:";
+            // 
+            // lblBuscarCodigo
+            // 
+            lblBuscarCodigo.AutoSize = true;
+            lblBuscarCodigo.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblBuscarCodigo.Location = new Point(58, 153);
+            lblBuscarCodigo.Name = "lblBuscarCodigo";
+            lblBuscarCodigo.Size = new Size(90, 15);
+            lblBuscarCodigo.TabIndex = 83;
+            lblBuscarCodigo.Text = "Buscar Código:";
             // 
             // CtrlProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1084, 476);
+            Controls.Add(lblBuscarCodigo);
+            Controls.Add(lblBuscarNombre);
+            Controls.Add(txtBuscarCodigo);
+            Controls.Add(txtBuscarNombre);
             Controls.Add(txtPrecio);
             Controls.Add(cboxSiYNo);
             Controls.Add(lblPrecio);
@@ -431,5 +473,9 @@
         private PictureBox pictureBox2;
         private TextBox txtCantidadMinima;
         private PictureBox pictureBox1;
+        private TextBox txtBuscarNombre;
+        private TextBox txtBuscarCodigo;
+        private Label lblBuscarNombre;
+        private Label lblBuscarCodigo;
     }
 }
