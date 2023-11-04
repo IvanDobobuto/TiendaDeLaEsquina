@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using static Examen.Program;
 using System.Diagnostics;
 
 namespace sistemaCompra
@@ -73,7 +72,7 @@ namespace sistemaCompra
 
         private void importarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Para importar usuarios, el formato a usarse debe ser el siguiente:\nNombre de usuario,Clave,Tipo de usuario");
+            MessageBox.Show("Para importar usuarios, el formato a usarse debe ser el siguiente:\nNombre de usuario,Correo electrónico,Clave,Tipo de usuario");
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory; // Directorio actual del programa

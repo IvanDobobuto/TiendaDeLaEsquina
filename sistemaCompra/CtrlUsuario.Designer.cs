@@ -46,6 +46,8 @@
             lblCorreo = new Label();
             txtCorreo = new TextBox();
             pictureBox2 = new PictureBox();
+            lblBuscarNombre = new Label();
+            txtBuscarNombre = new TextBox();
             pnlDesplegar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxAceptarEditar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxCancelar).BeginInit();
@@ -201,10 +203,10 @@
             // 
             dtgvListaUsuarios.AllowUserToOrderColumns = true;
             dtgvListaUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListaUsuarios.Location = new Point(31, 153);
+            dtgvListaUsuarios.Location = new Point(31, 202);
             dtgvListaUsuarios.Name = "dtgvListaUsuarios";
             dtgvListaUsuarios.RowTemplate.Height = 25;
-            dtgvListaUsuarios.Size = new Size(819, 304);
+            dtgvListaUsuarios.Size = new Size(819, 255);
             dtgvListaUsuarios.TabIndex = 65;
             dtgvListaUsuarios.CellContentClick += dtgvListaUsuarios_CellContentClick;
             // 
@@ -236,11 +238,30 @@
             pictureBox2.TabIndex = 81;
             pictureBox2.TabStop = false;
             // 
+            // lblBuscarNombre
+            // 
+            lblBuscarNombre.AutoSize = true;
+            lblBuscarNombre.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblBuscarNombre.Location = new Point(41, 153);
+            lblBuscarNombre.Name = "lblBuscarNombre";
+            lblBuscarNombre.Size = new Size(96, 15);
+            lblBuscarNombre.TabIndex = 89;
+            lblBuscarNombre.Text = "Buscar Nombre:";
+            // 
+            // txtBuscarNombre
+            // 
+            txtBuscarNombre.Location = new Point(41, 171);
+            txtBuscarNombre.Name = "txtBuscarNombre";
+            txtBuscarNombre.Size = new Size(124, 23);
+            txtBuscarNombre.TabIndex = 88;
+            // 
             // CtrlUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 476);
+            Controls.Add(lblBuscarNombre);
+            Controls.Add(txtBuscarNombre);
             Controls.Add(pictureBox2);
             Controls.Add(txtCorreo);
             Controls.Add(lblCorreo);
@@ -294,5 +315,7 @@
         private Label lblCorreo;
         private TextBox txtCorreo;
         private PictureBox pictureBox2;
+        private Label lblBuscarNombre;
+        private TextBox txtBuscarNombre;
     }
 }
