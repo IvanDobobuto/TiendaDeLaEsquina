@@ -13,6 +13,13 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Media;
+using Org.BouncyCastle.Asn1.Pkcs;
+using sistemaCompra.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Security.Policy;
+using System.util;
 
 namespace sistemaCompra
 {
@@ -22,6 +29,8 @@ namespace sistemaCompra
         private List<Producto> productos;
         private Cliente clienteSeleccionado;
         double tipoCambioGlobal = 0;
+        int playing = 0;
+        SoundPlayer Musica = new SoundPlayer(@"C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\Resources\SFX\Music.wav");
 
         private void nombreTB_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -53,7 +62,6 @@ namespace sistemaCompra
         public Ventas()
         {
             InitializeComponent();
-
 
 
             nombreTB.KeyPress += new KeyPressEventHandler(nombreTB_KeyPress);
@@ -100,7 +108,7 @@ namespace sistemaCompra
                 producto.CantidadMinima = Convert.ToInt32(valores[3]);
                 producto.UnidadDeMedida = valores[4];
                 producto.CostoUnitario = Convert.ToDouble(valores[5]);
-                producto.PrecioDeVenta = Convert.ToDouble(valores[6]);
+                producto.PrecioDeVenta = Math.Round(Convert.ToDouble(valores[6]), 2);
 
                 if (valores[7] == "SI")
                 {
@@ -185,6 +193,7 @@ namespace sistemaCompra
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(cantidadTB.Text))
             {
                 MessageBox.Show("Asegúrate de completar todos los campos.");
@@ -203,7 +212,7 @@ namespace sistemaCompra
 
             foreach (Producto producto in productos)
             {
-                VerificarCantidadDisponible();
+
                 if (buscador == Convert.ToString(producto.Codigo))
                 {
                     productoEncontrado = true;
@@ -212,6 +221,7 @@ namespace sistemaCompra
                         MessageBox.Show($"El producto {producto.Nombre} no está disponible.");
                         break;
                     }
+
 
                     else if (producto.Cantidad < cantidad)
                     {
@@ -225,7 +235,7 @@ namespace sistemaCompra
                         double totalLinea;
                         string IVA;
 
-                        if (producto.IVA && clienteSeleccionado.ContribuyenteEspecial)
+                        if (producto.IVA)
                         {
                             IVA = "16%";
                             totalLinea = cantidad * precioUnitario * 1.16;
@@ -317,6 +327,9 @@ namespace sistemaCompra
         }
         private void ImprimirFactura_Click(object sender, EventArgs e)
         {
+            // Reproducir efecto de sonido al imprimir factura
+            SoundPlayer kachingsfx = new SoundPlayer(Path.Combine(Application.StartupPath, "Cash.wav"));
+            kachingsfx.Play();
             Document doc = new Document();
             string fechaActual = DateTime.Now.ToString("dd-MM-yy");
             string horaActual = DateTime.Now.ToString("HH:mm:ss");
@@ -430,11 +443,13 @@ namespace sistemaCompra
 
                 double tipoCambio = tipoCambioGlobal;
                 double totalEnDolares = subtotal / tipoCambio;
-                doc.Add(new Paragraph($"Total en dólares: {totalEnDolares.ToString("N2")} $"));
-
+                doc.Add(new Paragraph(label4.Text));
+                doc.Add(new Paragraph($"Total en dólares: {totalEnDolares:f2} $"));
                 // Cerrar el documento
                 doc.Close();
                 MessageBox.Show($"Factura generada con éxito. Puede encontrarla en la carpeta Facturas.");
+                Musica.PlayLooping(); 
+                
             }
             catch (Exception ex)
             {
@@ -444,6 +459,8 @@ namespace sistemaCompra
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            VerificarCantidadDisponible();
+            Musica.Stop();
             this.Hide();
         }
 
@@ -491,7 +508,7 @@ namespace sistemaCompra
                 totalEnDolares = Math.Round(precioTotal / tipoCambioGlobal, 2);
                 if (totalEnDolares != 0)
                 {
-                    LabelDolares.Text = $"Total en dólares: {totalEnDolares.ToString("N2")} $";
+                    LabelDolares.Text = $"Total en dólares: {totalEnDolares:f2}$";
                 }
                 else
                 {
@@ -542,7 +559,7 @@ namespace sistemaCompra
 
             subtotal.Text = $"Subtotal: {precioTotal.ToString()} Bs.D";
             label3.Text = $"Total IVA: {totalIVA.ToString()} Bs.D";
-            LabelDolares.Text = $"Total en dólares: {totalEnDolares.ToString()} $";
+            LabelDolares.Text = $"Total en dólares: {totalEnDolares:f2} $";
         }
 
         private void can_Click(object sender, EventArgs e)
@@ -667,6 +684,42 @@ namespace sistemaCompra
         {
             VerProductos verProductos = new VerProductos();
             verProductos.Show();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string pathFacturas = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Facturas");
+
+                if (Directory.Exists(pathFacturas))
+                {
+                    Process.Start("explorer.exe", pathFacturas);
+                }
+                else
+                {
+                    MessageBox.Show("La carpeta de facturas no existe en el directorio del programa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al intentar abrir la carpeta de facturas: {ex.Message}");
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (playing == playing % 2)
+            {
+                Musica.PlayLooping();
+                playing++;
+                pictureBox1.Image = Properties.Resources.IconoMusicaEncendida;
+            }
+            if (playing != playing % 2)
+            {
+                Musica.Stop();
+                playing = 0;
+                pictureBox1.Image = Properties.Resources.IconoMusicaApagar;
+            }
         }
     }
 }

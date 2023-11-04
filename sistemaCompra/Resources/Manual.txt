@@ -1,0 +1,13 @@
+Bienvenido a La Tienda de la Esquina
+
+como nuevo empleado de nuestra gran familia de tiendas ubicadas en esquinas, le damos la bienvenida con un manual instructivo que explicara cada uno de los apartados de nuestro programa multi-uso de gestion, a continuacion encontrara una breve explicacion de cada uno de los apartados del programa y las funcionalidades de la tienda:
+
+-Login: Esta es la ventana inicial, por favor, llene el campo de Usuario y Contraseña con las credenciales que se le hayan proporcionado, en caso de problemas consulte al servicio tecnico
+
+-Admin: En este menu se encuentran las distintas funcionalidades administrativas del programa, su uso es exclusivo del administrador encargado, aqui podra modificar la lista de clientes, usuarios, productos, y importar/exportar listas pre-existentes.
+
+-Cajero: En este menu se encuentran las funciones de facturacion, por favor ingrese los datos proporcionados por el cliente, en caso de ya existir en el registro, ingrese solo su cedula, posterior a esto, revise la lista de productos presionando el boton de ver productos, agrege los codigos solicitados, verifique en la tabla de la derecha que las cantidades sean correctas, en caso de que el usuario pague en dolares ingrese la tasa de conversion, y proceda a facturar, dicha factura deberia de convertirse en un pdf listo para imprimir.
+
+-Super Usuario: Menu reservado al servicio tecnico, solicite su uso solo si necesita modificar manualmente las bases de datos o resetearlas a un estado previo.
+
+Esperamos que tenga un buen dia como empleado de La Tienda de la Esquina

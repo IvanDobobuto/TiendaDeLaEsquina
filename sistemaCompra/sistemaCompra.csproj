@@ -35,6 +35,9 @@
     <None Update="clientes.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="contador_facturas.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="inventario.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

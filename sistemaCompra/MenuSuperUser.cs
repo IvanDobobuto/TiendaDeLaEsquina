@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
 
 namespace sistemaCompra
 {
     public partial class MenuSuperUser : Form
     {
+        
         public MenuSuperUser()
         {
             InitializeComponent();
@@ -223,6 +225,11 @@ namespace sistemaCompra
             {
                 MessageBox.Show("Error al restablecer datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

@@ -1,0 +1,4 @@
+Cedula,Nombre,Apellido,Direccion,Numero telefono,Correo electronico,Tipo documento,Contribuyente especial
+30080785,Jose,Dobobuto,Merida,0412,ivan@gmail.com,V,false
+30080786,Luis,Santana,Merida,0412,luis@gmail.com,V,true
+30080782,Karlos,Perez,Merida,0412,luis@gmail.com,V,false

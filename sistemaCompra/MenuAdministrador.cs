@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using static Examen.Program;
+using System.Diagnostics;
 
 namespace sistemaCompra
 {
@@ -37,6 +40,10 @@ namespace sistemaCompra
         {
             var form = Application.OpenForms.OfType<CtrlUsuario>().FirstOrDefault();
             CtrlUsuario ctrlUsuario = form ?? new CtrlUsuario();
+            ctrlUsuario.Shown += (s, ev) =>
+            {
+                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo usuario", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
             AgregarFormulario(ctrlUsuario);
         }
 
@@ -44,6 +51,10 @@ namespace sistemaCompra
         {
             var form = Application.OpenForms.OfType<CtrlProducto>().FirstOrDefault();
             CtrlProducto ctrlProducto = form ?? new CtrlProducto();
+            ctrlProducto.Shown += (s, ev) =>
+            {
+                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo producto", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
             AgregarFormulario(ctrlProducto);
         }
 
@@ -51,6 +62,10 @@ namespace sistemaCompra
         {
             var form = Application.OpenForms.OfType<CtrlCliente>().FirstOrDefault();
             CtrlCliente ctrlCliente = form ?? new CtrlCliente();
+            ctrlCliente.Shown += (s, ev) =>
+            {
+                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo cliente", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
             AgregarFormulario(ctrlCliente);
         }
 
@@ -412,6 +427,23 @@ namespace sistemaCompra
         private void pnlMenuAdministrador_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cerrarMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuAdministrador_Load(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<InfoAdmin>().FirstOrDefault();
+            InfoAdmin infoAdmin = form ?? new InfoAdmin();
+            AgregarFormulario(infoAdmin);
         }
     }
 }

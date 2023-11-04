@@ -145,7 +145,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pboxAvatar.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 453</value>
@@ -169,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cajaUsuario.Font" type="System.Drawing.Font, System.Drawing">
     <value>Gill Sans MT, 9pt</value>
@@ -178,7 +178,7 @@
     <value>112, 238</value>
   </data>
   <data name="cajaUsuario.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 25</value>
+    <value>165, 21</value>
   </data>
   <data name="cajaUsuario.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -193,7 +193,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cajaUsuario.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cajaClave.Font" type="System.Drawing.Font, System.Drawing">
     <value>Gill Sans MT, 9pt</value>
@@ -202,7 +202,7 @@
     <value>112, 351</value>
   </data>
   <data name="cajaClave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 25</value>
+    <value>165, 21</value>
   </data>
   <data name="cajaClave.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -217,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cajaClave.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="mostrarPass.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -229,7 +229,7 @@
     <value>112, 408</value>
   </data>
   <data name="mostrarPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 21</value>
+    <value>152, 17</value>
   </data>
   <data name="mostrarPass.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -247,7 +247,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mostrarPass.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="pboxUsuario.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 171</value>
@@ -275,7 +275,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pboxUsuario.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pboxPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -305,7 +305,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pboxPassword.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="Help.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 12</value>
+  </data>
+  <data name="Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 50</value>
+  </data>
+  <data name="Help.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <data name="Help.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;Help.Name" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="&gt;&gt;Help.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Help.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Help.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

@@ -923,9 +923,59 @@ namespace sistemaCompra.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IconoInterrogacion {
+            get {
+                object obj = ResourceManager.GetObject("IconoInterrogacion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IconoLupa {
             get {
                 object obj = ResourceManager.GetObject("IconoLupa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconoMusica {
+            get {
+                object obj = ResourceManager.GetObject("IconoMusica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconoMusica1 {
+            get {
+                object obj = ResourceManager.GetObject("IconoMusica1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconoMusicaApagar {
+            get {
+                object obj = ResourceManager.GetObject("IconoMusicaApagar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconoMusicaEncendida {
+            get {
+                object obj = ResourceManager.GetObject("IconoMusicaEncendida", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1066,6 +1116,16 @@ namespace sistemaCompra.Properties {
         internal static System.Drawing.Bitmap InterfazSuperUsuario3 {
             get {
                 object obj = ResourceManager.GetObject("InterfazSuperUsuario3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InterfazSuperUsuario31 {
+            get {
+                object obj = ResourceManager.GetObject("InterfazSuperUsuario31", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

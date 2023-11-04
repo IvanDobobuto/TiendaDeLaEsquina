@@ -1,5 +1,7 @@
 using System.Windows.Forms.VisualStyles;
 using System.IO;
+using System.Media;
+using System.Diagnostics;
 
 namespace sistemaCompra
 {
@@ -33,12 +35,12 @@ namespace sistemaCompra
                     string linea = lineasUsuarios[i];
                     string[] valores = linea.Split(',');
 
-                    if (valores.Length >= 3)
+                    if (valores.Length >= 4)
                     {
                         Usuario usuario = new Usuario();
                         usuario.Username = valores[0];
-                        usuario.Password = valores[1];
-                        usuario.TipoDeUsuario = valores[2];
+                        usuario.Password = valores[2];
+                        usuario.TipoDeUsuario = valores[3];
                         usuarios.Add(usuario);
                     }
                 }
@@ -65,6 +67,10 @@ namespace sistemaCompra
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            string soundFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Login.wav");
+
+            SoundPlayer Loginsfx = new SoundPlayer(soundFilePath);
+            Loginsfx.Play();
             CargarUsuarios();
 
             if (cajaUsuario.TextLength < 4)
@@ -174,6 +180,30 @@ namespace sistemaCompra
             {
                 MessageBox.Show("La clave no debe tener espacios");
                 cajaClave.Clear();
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            string ruta = @"C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\Resources\Manual.txt";
+
+            if (System.IO.File.Exists(ruta))
+            {
+
+                try
+                {
+
+                    Process.Start("notepad.exe", ruta);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo abrir el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("El archivo no existe en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

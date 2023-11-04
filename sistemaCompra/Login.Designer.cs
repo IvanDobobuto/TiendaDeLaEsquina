@@ -36,10 +36,12 @@
             mostrarPass = new CheckBox();
             pboxUsuario = new PictureBox();
             pboxPassword = new PictureBox();
+            Help = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pboxAvatar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxUsuario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxPassword).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Help).BeginInit();
             SuspendLayout();
             // 
             // pboxAvatar
@@ -93,11 +95,20 @@
             pboxPassword.Name = "pboxPassword";
             pboxPassword.TabStop = false;
             // 
+            // Help
+            // 
+            Help.Image = Properties.Resources.IconoInterrogacion;
+            resources.ApplyResources(Help, "Help");
+            Help.Name = "Help";
+            Help.TabStop = false;
+            Help.Click += pictureBox3_Click;
+            // 
             // Login
             // 
             AutoScaleMode = AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
             BackColor = Color.Honeydew;
+            Controls.Add(Help);
             Controls.Add(mostrarPass);
             Controls.Add(cajaClave);
             Controls.Add(cajaUsuario);
@@ -113,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pboxUsuario).EndInit();
             ((System.ComponentModel.ISupportInitialize)pboxPassword).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Help).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,5 +138,6 @@
         private CheckBox mostrarPass;
         private PictureBox pboxUsuario;
         private PictureBox pboxPassword;
+        private PictureBox Help;
     }
 }

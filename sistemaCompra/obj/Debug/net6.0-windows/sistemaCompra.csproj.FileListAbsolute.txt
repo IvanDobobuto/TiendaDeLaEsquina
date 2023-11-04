@@ -1,0 +1,201 @@
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Ivan\Desktop\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\clientes.csv
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\contador_facturas.csv
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\inventario.csv
+C:\Users\ojito\Downloads\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\usuarios.csv
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Ivan\Desktop\Fotos\MiRepositorioG-3-Mano-joden-esta-vaina-y-los-mato\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Usuario\Downloads\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.exe
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.deps.json
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.runtimeconfig.json
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.AssemblyReference.cache
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlCliente.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlProducto.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.CtrlUsuario.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Login.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuAdministrador.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.MenuSuperUser.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Properties.Resources.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.Ventas.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.VerProductos.resources
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.GenerateResource.cache
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfoInputs.cache
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.AssemblyInfo.cs
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.csproj.CopyComplete
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\refint\sistemaCompra.dll
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.pdb
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.genruntimeconfig.cache
+C:\Users\Ivan\Desktop\Examen 3\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\ref\sistemaCompra.dll
+C:\Users\Liliana\source\AnotherRepo\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\obj\Debug\net6.0-windows\sistemaCompra.InfoAdmin.resources

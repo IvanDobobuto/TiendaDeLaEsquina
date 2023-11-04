@@ -42,6 +42,7 @@
             importarClientesToolStripMenuItem = new ToolStripMenuItem();
             exportarClientesToolStripMenuItem = new ToolStripMenuItem();
             acercaDeToolStripMenuItem = new ToolStripMenuItem();
+            cerrarMenuToolStripMenuItem = new ToolStripMenuItem();
             pnlMenuAdministrador = new Panel();
             toolStripTextBox1 = new ToolStripTextBox();
             mnuMenuAdministrador.SuspendLayout();
@@ -50,10 +51,10 @@
             // mnuMenuAdministrador
             // 
             mnuMenuAdministrador.BackColor = Color.FromArgb(189, 195, 199);
-            mnuMenuAdministrador.Items.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, productosToolStripMenuItem, clientesToolStripMenuItem, acercaDeToolStripMenuItem });
+            mnuMenuAdministrador.Items.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, productosToolStripMenuItem, clientesToolStripMenuItem, acercaDeToolStripMenuItem, cerrarMenuToolStripMenuItem });
             mnuMenuAdministrador.Location = new Point(0, 0);
             mnuMenuAdministrador.Name = "mnuMenuAdministrador";
-            mnuMenuAdministrador.Size = new Size(857, 24);
+            mnuMenuAdministrador.Size = new Size(1064, 24);
             mnuMenuAdministrador.TabIndex = 0;
             mnuMenuAdministrador.Text = "menuStrip1";
             // 
@@ -61,10 +62,10 @@
             // 
             usuariosToolStripMenuItem.BackColor = Color.FromArgb(189, 195, 199);
             usuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { controlDeUsuariosToolStripMenuItem, importarUsuariosToolStripMenuItem, exportarUsuariosToolStripMenuItem });
-            usuariosToolStripMenuItem.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            usuariosToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
             usuariosToolStripMenuItem.Image = Properties.Resources.IconoUsuario;
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(91, 20);
+            usuariosToolStripMenuItem.Size = new Size(84, 20);
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.ToolTipText = "Opciones de Usuario";
             // 
@@ -96,19 +97,20 @@
             // productosToolStripMenuItem
             // 
             productosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { controlDeProductosToolStripMenuItem, importarProductosToolStripMenuItem, exportarProductosToolStripMenuItem });
-            productosToolStripMenuItem.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            productosToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
             productosToolStripMenuItem.Image = Properties.Resources.IconoProducto;
             productosToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(98, 20);
+            productosToolStripMenuItem.Size = new Size(90, 20);
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.ToolTipText = "Opciones de Producto";
+            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // controlDeProductosToolStripMenuItem
             // 
             controlDeProductosToolStripMenuItem.Image = Properties.Resources.IconoControlProducto;
             controlDeProductosToolStripMenuItem.Name = "controlDeProductosToolStripMenuItem";
-            controlDeProductosToolStripMenuItem.Size = new Size(214, 22);
+            controlDeProductosToolStripMenuItem.Size = new Size(188, 22);
             controlDeProductosToolStripMenuItem.Text = "Control de Productos";
             controlDeProductosToolStripMenuItem.ToolTipText = "Ver lista de productos, agregar productos, editar productos, y eliminar productos ";
             controlDeProductosToolStripMenuItem.Click += controlDeProductosToolStripMenuItem_Click;
@@ -117,7 +119,7 @@
             // 
             importarProductosToolStripMenuItem.Image = Properties.Resources.IconoExportar1;
             importarProductosToolStripMenuItem.Name = "importarProductosToolStripMenuItem";
-            importarProductosToolStripMenuItem.Size = new Size(214, 22);
+            importarProductosToolStripMenuItem.Size = new Size(188, 22);
             importarProductosToolStripMenuItem.Text = "Importar Productos";
             importarProductosToolStripMenuItem.Click += importarProductosToolStripMenuItem_Click;
             // 
@@ -125,17 +127,17 @@
             // 
             exportarProductosToolStripMenuItem.Image = Properties.Resources.IconoImportar;
             exportarProductosToolStripMenuItem.Name = "exportarProductosToolStripMenuItem";
-            exportarProductosToolStripMenuItem.Size = new Size(214, 22);
+            exportarProductosToolStripMenuItem.Size = new Size(188, 22);
             exportarProductosToolStripMenuItem.Text = "Exportar Productos";
             exportarProductosToolStripMenuItem.Click += exportarProductosToolStripMenuItem_Click;
             // 
             // clientesToolStripMenuItem
             // 
             clientesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { controlDeClientesToolStripMenuItem, importarClientesToolStripMenuItem, exportarClientesToolStripMenuItem });
-            clientesToolStripMenuItem.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            clientesToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
             clientesToolStripMenuItem.Image = Properties.Resources.IconoCliente;
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(91, 20);
+            clientesToolStripMenuItem.Size = new Size(79, 20);
             clientesToolStripMenuItem.Text = "Clientes";
             clientesToolStripMenuItem.ToolTipText = "Opciones de Cliente";
             clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
@@ -144,7 +146,7 @@
             // 
             controlDeClientesToolStripMenuItem.Image = Properties.Resources.IconoControlCliente;
             controlDeClientesToolStripMenuItem.Name = "controlDeClientesToolStripMenuItem";
-            controlDeClientesToolStripMenuItem.Size = new Size(207, 22);
+            controlDeClientesToolStripMenuItem.Size = new Size(177, 22);
             controlDeClientesToolStripMenuItem.Text = "Control de Clientes";
             controlDeClientesToolStripMenuItem.ToolTipText = "Ver lista de clientes, agregar clientes, editar clientes, y eliminar clientes ";
             controlDeClientesToolStripMenuItem.Click += controlDeClientesToolStripMenuItem_Click;
@@ -153,7 +155,7 @@
             // 
             importarClientesToolStripMenuItem.Image = Properties.Resources.IconoExportar;
             importarClientesToolStripMenuItem.Name = "importarClientesToolStripMenuItem";
-            importarClientesToolStripMenuItem.Size = new Size(207, 22);
+            importarClientesToolStripMenuItem.Size = new Size(177, 22);
             importarClientesToolStripMenuItem.Text = "Importar Clientes";
             importarClientesToolStripMenuItem.Click += importarClientesToolStripMenuItem_Click;
             // 
@@ -161,25 +163,34 @@
             // 
             exportarClientesToolStripMenuItem.Image = Properties.Resources.IconoImportar;
             exportarClientesToolStripMenuItem.Name = "exportarClientesToolStripMenuItem";
-            exportarClientesToolStripMenuItem.Size = new Size(207, 22);
+            exportarClientesToolStripMenuItem.Size = new Size(177, 22);
             exportarClientesToolStripMenuItem.Text = "Exportar Clientes";
             exportarClientesToolStripMenuItem.Click += exportarClientesToolStripMenuItem_Click;
             // 
             // acercaDeToolStripMenuItem
             // 
-            acercaDeToolStripMenuItem.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            acercaDeToolStripMenuItem.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            acercaDeToolStripMenuItem.Image = Properties.Resources.IconoInterrogacion;
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            acercaDeToolStripMenuItem.Size = new Size(103, 20);
+            acercaDeToolStripMenuItem.Size = new Size(98, 20);
             acercaDeToolStripMenuItem.Text = "Acerca de...";
             acercaDeToolStripMenuItem.ToolTipText = "Dale click para saber que se encuentra en esta ventana...";
             acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
+            // 
+            // cerrarMenuToolStripMenuItem
+            // 
+            cerrarMenuToolStripMenuItem.Image = Properties.Resources.BotonRetroceder;
+            cerrarMenuToolStripMenuItem.Name = "cerrarMenuToolStripMenuItem";
+            cerrarMenuToolStripMenuItem.Size = new Size(101, 20);
+            cerrarMenuToolStripMenuItem.Text = "Cerrar Menu";
+            cerrarMenuToolStripMenuItem.Click += cerrarMenuToolStripMenuItem_Click;
             // 
             // pnlMenuAdministrador
             // 
             pnlMenuAdministrador.Dock = DockStyle.Fill;
             pnlMenuAdministrador.Location = new Point(0, 24);
             pnlMenuAdministrador.Name = "pnlMenuAdministrador";
-            pnlMenuAdministrador.Size = new Size(857, 592);
+            pnlMenuAdministrador.Size = new Size(1064, 507);
             pnlMenuAdministrador.TabIndex = 1;
             pnlMenuAdministrador.Paint += pnlMenuAdministrador_Paint;
             // 
@@ -192,12 +203,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(857, 616);
+            ClientSize = new Size(1064, 531);
             Controls.Add(pnlMenuAdministrador);
             Controls.Add(mnuMenuAdministrador);
             Name = "MenuAdministrador";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuAdministrador";
+            Load += MenuAdministrador_Load;
             mnuMenuAdministrador.ResumeLayout(false);
             mnuMenuAdministrador.PerformLayout();
             ResumeLayout(false);
@@ -222,5 +234,6 @@
         private ToolStripMenuItem exportarProductosToolStripMenuItem;
         private ToolStripMenuItem importarClientesToolStripMenuItem;
         private ToolStripMenuItem exportarClientesToolStripMenuItem;
+        private ToolStripMenuItem cerrarMenuToolStripMenuItem;
     }
 }

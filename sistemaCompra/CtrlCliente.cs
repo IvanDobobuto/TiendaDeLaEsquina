@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
 
 namespace sistemaCompra
 {
@@ -31,8 +32,22 @@ namespace sistemaCompra
             txtNombre.KeyPress += new KeyPressEventHandler(txtNombre_KeyPress);
             txtApellido.KeyPress += new KeyPressEventHandler(txtApellido_KeyPress);
 
-            // Asociar evento SelectionChanged al DataGridView
-            dtgvListaClientes.SelectionChanged += new EventHandler(dtgvListaClientes_SelectionChanged);
+            Image imgEditar = Image.FromFile("VentasEditar.png");
+            Image imgEliminar = Image.FromFile("ControlEliminar.png");
+
+            // Agregar columna de botón de edición con imagen
+            DataGridViewImageColumn editarImageColumn = new DataGridViewImageColumn();
+            editarImageColumn.HeaderText = "Editar";
+            editarImageColumn.Image = imgEditar;
+            editarImageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen al tamaño de la celda
+            dtgvListaClientes.Columns.Add(editarImageColumn);
+
+            // Agregar columna de botón de eliminación con imagen
+            DataGridViewImageColumn eliminarImageColumn = new DataGridViewImageColumn();
+            eliminarImageColumn.HeaderText = "Eliminar";
+            eliminarImageColumn.Image = imgEliminar;
+            eliminarImageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen al tamaño de la celda
+            dtgvListaClientes.Columns.Add(eliminarImageColumn);
         }
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -83,33 +98,13 @@ namespace sistemaCompra
         private void CtrlCliente_Load(object sender, EventArgs e)
         {
             pnlDesplegar.Visible = false;
+            dtgvListaClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // Cargar datos en DataGridView
             CargarDatosEnDataGridView();
-            dtgvListaClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgvListaClientes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            // Ocultar columnas específicas
-            OcultarColumnasNoDeseadas();
-        }
-        private void OcultarColumnasNoDeseadas()
-        {
-            List<string> columnasDeseadas = new List<string> { "Cedula", "Nombre", "TipoDocumento" };
 
-            foreach (DataGridViewColumn columna in dtgvListaClientes.Columns)
-            {
-                if (columnasDeseadas.Contains(columna.Name))
-                {
-                    columna.Visible = true;
-                }
-                else
-                {
-                    columna.Visible = false;
-                }
-            }
         }
         private void RefrescarDataGridView()
         {
-            dtgvListaClientes.DataSource = null;
-            dtgvListaClientes.Rows.Clear();
             CargarDatosEnDataGridView();
         }
 
@@ -138,52 +133,48 @@ namespace sistemaCompra
                 }
             }
 
-            // Agregar la columna Tipo de Documento si no existe
-            if (!dt.Columns.Contains("TipoDocumento"))
-            {
-                dt.Columns.Add("TipoDocumento", typeof(string));
-            }
-
-            // Actualizar el valor de la columna TipoDocumento en cada fila
-            foreach (DataRow row in dt.Rows)
-            {
-                row["TipoDocumento"] = row["Tipo documento"];
-            }
-
             // Asignar DataTable a DataGridView
             dtgvListaClientes.DataSource = dt;
-
-            // Mostrar la columna TipoDocumento
-            if (dtgvListaClientes.Columns.Contains("TipoDocumento"))
-            {
-                dtgvListaClientes.Columns["TipoDocumento"].Visible = true;
-            }
         }
 
         private void pboxAgregar_Click(object sender, EventArgs e)
         {
             pnlDesplegar.Visible = true;
-            LimpiarCampos();
-            pboxAceptarAgregar.Visible = true;
             pboxAceptarEditar.Visible = false;
+            pboxCancelar.Visible = false;
+
+            {
+                if (CamposEstanCompletos())
+                {
+                    string cedula = txtIdentificacion.Text;
+                    string tipoDocumento = cboxTipoIdentificacion.Text;
+
+                    if (!VerificarCedulaUnica(cedula, tipoDocumento))
+                    {
+                        MessageBox.Show("La cédula ya está en uso para el tipo de documento indicado.");
+                        return;
+                    }
+
+                    string nombre = txtNombre.Text;
+                    string apellido = txtApellido.Text;
+                    string direccion = txtDireccion.Text;
+                    string telefono = txtTelefono.Text;
+                    string correo = txtCorreo.Text;
+                    string contribuyenteEspecial = cboxSiYNo.Text;
+
+                    AgregarClienteAlArchivo(cedula, nombre, apellido, direccion, telefono, correo, tipoDocumento, contribuyenteEspecial);
+
+                    // Limpiar campos después de agregar un cliente
+                    LimpiarCampos();
+                    CargarDatosEnDataGridView();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor complete todos los campos antes de agregar un cliente.");
+                }
+            }
         }
 
-        private void pboxEditar_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(cedulaSeleccionada))
-            {
-                pnlDesplegar.Visible = true;
-                pboxAceptarAgregar.Visible = false;
-                pboxAceptarEditar.Visible = true;
-
-                // Cargar los campos del cliente seleccionado en los controles correspondientes
-                CargarDatosClienteSeleccionado(cedulaSeleccionada);
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un cliente para editar.");
-            }
-        }
         private void CargarDatosClienteSeleccionado(string cedula)
         {
             if (File.Exists(path))
@@ -214,53 +205,9 @@ namespace sistemaCompra
         private void pboxCancelar_Click(object sender, EventArgs e)
         {
             pnlDesplegar.Visible = false;
-        }
-
-        private void pboxEliminar_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(cedulaSeleccionada))
-            {
-                DialogResult confirmResult = MessageBox.Show("¿Está seguro de que desea eliminar este cliente?", "Confirmar eliminación", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
-                {
-                    EliminarClienteDeArchivo(cedulaSeleccionada);
-                    CargarDatosEnDataGridView(); // Volver a cargar los datos en el DataGridView después de la eliminación
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un cliente para eliminar.");
-            }
-            RefrescarDataGridView();
-            // Ocultar columnas no deseadas después de eliminar
-            OcultarColumnasNoDeseadas();
             LimpiarCampos();
         }
 
-        private void EliminarClienteDeArchivo(string cedula)
-        {
-            try
-            {
-                List<string> lines = new List<string>(File.ReadAllLines(path));
-                using (StreamWriter sw = new StreamWriter(path))
-                {
-                    foreach (string line in lines)
-                    {
-                        if (!line.StartsWith(cedula))
-                        {
-                            sw.WriteLine(line);
-                        }
-                    }
-                }
-                MessageBox.Show("Cliente eliminado con éxito.");
-
-                CargarDatosEnDataGridView(); // Actualizar DataGridView después de eliminar un cliente
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al eliminar cliente: {ex.Message}");
-            }
-        }
         private void pboxAceptarEditar_Click(object sender, EventArgs e)
         {
             if (CamposEstanCompletos())
@@ -286,8 +233,6 @@ namespace sistemaCompra
                 // Limpiar campos después de editar un cliente
                 LimpiarCampos();
                 RefrescarDataGridView();
-                // Ocultar columnas no deseadas después de editar
-                OcultarColumnasNoDeseadas();
             }
             else
             {
@@ -366,39 +311,6 @@ namespace sistemaCompra
             }
             return true;
         }
-        private void pboxAceptarAgregar_Click(object sender, EventArgs e)
-        {
-            if (CamposEstanCompletos())
-            {
-                string cedula = txtIdentificacion.Text;
-                string tipoDocumento = cboxTipoIdentificacion.Text;
-
-                if (!VerificarCedulaUnica(cedula, tipoDocumento))
-                {
-                    MessageBox.Show("La cédula ya está en uso para el tipo de documento indicado.");
-                    return;
-                }
-
-                string nombre = txtNombre.Text;
-                string apellido = txtApellido.Text;
-                string direccion = txtDireccion.Text;
-                string telefono = txtTelefono.Text;
-                string correo = txtCorreo.Text;
-                string contribuyenteEspecial = cboxSiYNo.Text;
-
-                AgregarClienteAlArchivo(cedula, nombre, apellido, direccion, telefono, correo, tipoDocumento, contribuyenteEspecial);
-
-                // Limpiar campos después de agregar un cliente
-                LimpiarCampos();
-                RefrescarDataGridView();
-                // Ocultar columnas no deseadas después de agregar
-                OcultarColumnasNoDeseadas();
-            }
-            else
-            {
-                MessageBox.Show("Por favor complete todos los campos antes de agregar un cliente.");
-            }
-        }
 
         private bool CamposEstanCompletos()
         {
@@ -467,6 +379,96 @@ namespace sistemaCompra
                 DataGridViewRow selectedRow = dtgvListaClientes.SelectedRows[0];
                 cedulaSeleccionada = selectedRow.Cells["Cedula"].Value.ToString();
                 CargarDatosClienteSeleccionado(cedulaSeleccionada);
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void CargarDatosClienteParaEdicion(string cedula)
+        {
+            pboxCancelar.Visible = true;
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    sr.ReadLine(); // Saltar la primera línea (encabezado)
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] campos = line.Split(',');
+                        if (campos[0] == cedula)
+                        {
+                            txtIdentificacion.Text = campos[0];
+                            txtNombre.Text = campos[1];
+                            txtApellido.Text = campos[2];
+                            txtDireccion.Text = campos[3];
+                            txtTelefono.Text = campos[4];
+                            txtCorreo.Text = campos[5];
+                            cboxTipoIdentificacion.SelectedItem = campos[6];
+                            cboxSiYNo.SelectedItem = campos[7];
+                            pnlDesplegar.Visible = true;
+                            pboxAceptarEditar.Visible = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos para edición: {ex.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EliminarClienteDeArchivo(string cedula)
+        {
+            try
+            {
+                string tempFile = Path.GetTempFileName();
+                var linesToKeep = File.ReadLines(path).Where(l => !l.StartsWith(cedula + ","));
+                File.WriteAllLines(tempFile, linesToKeep);
+                File.Delete(path);
+                File.Move(tempFile, path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar el cliente: {ex.Message}", "Error de eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtgvListaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridView dgv = sender as DataGridView;
+                if (e.ColumnIndex >= 0 && e.ColumnIndex < dgv.Columns.Count)
+                {
+                    if (dgv.Columns[e.ColumnIndex] is DataGridViewImageColumn)
+                    {
+                        string cedulaValue = dgv.Rows[e.RowIndex].Cells["Cedula"].Value.ToString();
+                        string nombreCliente = dgv.Rows[e.RowIndex].Cells["Nombre"].Value.ToString(); // Obtener el nombre del cliente
+                        if (dgv.Columns[e.ColumnIndex].HeaderText.Equals("Editar"))
+                        {
+                            string cedula = dgv.Rows[e.RowIndex].Cells["Cedula"].Value.ToString();
+                            CargarDatosClienteParaEdicion(cedula);
+                        }
+                        else if (dgv.Columns[e.ColumnIndex].HeaderText.Equals("Eliminar"))
+                        {
+                            var confirmResult = MessageBox.Show($"¿Estás seguro de que deseas eliminar al cliente '{nombreCliente}'?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                            if (confirmResult == DialogResult.Yes)
+                            {
+                                EliminarClienteDeArchivo(cedulaValue);
+                                MessageBox.Show("Cliente eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                CargarDatosEnDataGridView();
+                                LimpiarCampos();
+                                pboxAceptarEditar.Visible = false;
+                                pboxCancelar.Visible = false;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

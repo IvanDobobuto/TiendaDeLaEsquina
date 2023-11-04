@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
+using System.Linq;
 
 namespace sistemaCompra
 {
@@ -23,7 +25,27 @@ namespace sistemaCompra
             txtCantidad.KeyPress += new KeyPressEventHandler(ValidarNumerosEnteros);
             txtCosto.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
             txtPrecio.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
+            txtCantidadMinima.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
+
+            Image imgEditar = Image.FromFile("VentasEditar.png");
+            Image imgEliminar = Image.FromFile("ControlEliminar.png");
+
+            // Agregar columna de botón de edición con imagen
+            DataGridViewImageColumn editarImageColumn = new DataGridViewImageColumn();
+            editarImageColumn.HeaderText = "Editar";
+            editarImageColumn.Image = imgEditar;
+            editarImageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen al tamaño de la celda
+            dtgvListaProductos.Columns.Add(editarImageColumn);
+
+            // Agregar columna de botón de eliminación con imagen
+            DataGridViewImageColumn eliminarImageColumn = new DataGridViewImageColumn();
+            eliminarImageColumn.HeaderText = "Eliminar";
+            eliminarImageColumn.Image = imgEliminar;
+            eliminarImageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen al tamaño de la celda
+            dtgvListaProductos.Columns.Add(eliminarImageColumn);
+
         }
+
         private void ValidarNumerosEnteros(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -92,6 +114,7 @@ namespace sistemaCompra
         private DataTable ObtenerTablaProductos()
         {
             DataTable dt = new DataTable();
+
             dt.Columns.Add("Codigo");
             dt.Columns.Add("Nombre");
             dt.Columns.Add("Cantidad");
@@ -103,21 +126,26 @@ namespace sistemaCompra
 
             try
             {
-                using (StreamReader sr = new StreamReader(NOMBRE_ARCHIVO))
+                var lines = File.ReadAllLines(NOMBRE_ARCHIVO);
+                var data = lines.Skip(1) // Salta la primera línea (encabezado)
+                                .Where(l => !string.IsNullOrWhiteSpace(l))
+                                .Select(l => l.Split(','))
+                                .Where(arr => arr.Length == dt.Columns.Count)
+                                .Select(arr => new
+                                {
+                                    Codigo = arr[0],
+                                    Nombre = arr[1],
+                                    Cantidad = arr[2],
+                                    CantidadMinima = arr[3],
+                                    UnidadMedida = arr[4],
+                                    Costo = arr[5],
+                                    Precio = arr[6],
+                                    TieneIVA = arr[7]
+                                });
+
+                foreach (var item in data)
                 {
-                    sr.ReadLine(); // Saltar la primera línea
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        if (!string.IsNullOrWhiteSpace(line)) // Verificar si la línea no está vacía
-                        {
-                            string[] campos = line.Split(',');
-                            if (campos.Length == dt.Columns.Count) // Verificar si el número de campos es igual al número de columnas
-                            {
-                                dt.Rows.Add(campos);
-                            }
-                        }
-                    }
+                    dt.Rows.Add(item.Codigo, item.Nombre, item.Cantidad, item.CantidadMinima, item.UnidadMedida, item.Costo, item.Precio, item.TieneIVA);
                 }
             }
             catch (Exception ex)
@@ -131,13 +159,6 @@ namespace sistemaCompra
         private void CargarProductosEnDataGridView()
         {
             DataTable dtProductos = ObtenerTablaProductos();
-            dtgvListaProductos.DataSource = dtProductos;
-            dtgvListaProductos.Columns["Cantidad"].Visible = false;
-            dtgvListaProductos.Columns["Cantidad Mínima"].Visible = false;
-            dtgvListaProductos.Columns["UnidadMedida"].Visible = false;
-            dtgvListaProductos.Columns["Costo"].Visible = false;
-            dtgvListaProductos.Columns["Precio"].Visible = false;
-            dtgvListaProductos.Columns["TieneIVA"].Visible = false;
             dtgvListaProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataView dv = dtProductos.DefaultView;
             dv.Sort = "Codigo ASC";
@@ -155,45 +176,131 @@ namespace sistemaCompra
             pnlDesplegar.Visible = false;
             CargarProductosEnDataGridView();
             dtgvListaProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void pboxAgregar_Click(object sender, EventArgs e)
         {
-            pnlDesplegar.Visible = true;
-            LimpiarCasillas();
             pboxAceptarEditar.Visible = false;
-            pboxAceptarAgregar.Visible = true;
-        }
-
-        private void pboxEditar_Click(object sender, EventArgs e)
-        {
-            pboxAceptarAgregar.Visible = false;
-            pboxAceptarEditar.Visible = true;
-            // Obtener el producto seleccionado
-            if (dtgvListaProductos.SelectedRows.Count > 0)
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtCantidad.Text) || cboxUdMedidas.SelectedItem == null ||
+                string.IsNullOrWhiteSpace(txtCosto.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text) ||
+                cboxSiYNo.SelectedItem == null)
             {
-                DataGridViewRow filaSeleccionada = dtgvListaProductos.SelectedRows[0];
-                txtCodigo.Text = filaSeleccionada.Cells[0].Value.ToString();
-                txtNombre.Text = filaSeleccionada.Cells[1].Value.ToString();
-                txtCantidad.Text = filaSeleccionada.Cells[2].Value.ToString();
-                txtCantidadMinima.Text = filaSeleccionada.Cells[3].Value.ToString();
-                cboxUdMedidas.SelectedItem = filaSeleccionada.Cells[4].Value.ToString();
-                txtCosto.Text = filaSeleccionada.Cells[5].Value.ToString();
-                txtPrecio.Text = filaSeleccionada.Cells[6].Value.ToString();
-                cboxSiYNo.SelectedItem = filaSeleccionada.Cells[7].Value.ToString();
+                MessageBox.Show("Por favor complete todos los campos antes de agregar el producto.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                string codigo = txtCodigo.Text;
+                if (VerificarCodigoExistente(codigo))
+                {
+                    int maxCodigo = ObtenerCodigoMasAlto();
+                    MessageBox.Show($"El código ya existe. Use un código superior al último código más alto, por ejemplo, {maxCodigo + 1}.", "Código Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    string nombre = txtNombre.Text;
+                    string cantidad = txtCantidad.Text;
+                    string cantidadMinima = txtCantidadMinima.Text;
+                    string unidadMedida = cboxUdMedidas.SelectedItem.ToString();
+                    string costo = txtCosto.Text;
+                    string precio = txtPrecio.Text;
+                    string tieneIVA = cboxSiYNo.SelectedItem.ToString();
 
-                pnlDesplegar.Visible = true;
+                    AgregarProductoAlCSV(codigo, nombre, cantidad, cantidadMinima, unidadMedida, costo, precio, tieneIVA);
+                    pnlDesplegar.Visible = false;
+                }
             }
         }
+
 
         private void pboxCancelar_Click(object sender, EventArgs e)
         {
             pnlDesplegar.Visible = false;
+            LimpiarCasillas();
         }
 
-        private void dtgvListaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dtgvListaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridView dgv = sender as DataGridView;
+                if (e.ColumnIndex >= 0 && e.ColumnIndex < dgv.Columns.Count)
+                {
+                    if (dgv.Columns[e.ColumnIndex] is DataGridViewImageColumn)
+                    {
+                        string codigoValue = dgv.Rows[e.RowIndex].Cells["Codigo"].Value.ToString();
+                        string nombreProducto = dgv.Rows[e.RowIndex].Cells["Nombre"].Value.ToString(); // Obtener el nombre del producto
+                        if (dgv.Columns[e.ColumnIndex].HeaderText.Equals("Editar"))
+                        {
+                            string codigo = dgv.Rows[e.RowIndex].Cells["Codigo"].Value.ToString();
+                            CargarDatosParaEdicion(codigo);
+                        }
+                        else if (dgv.Columns[e.ColumnIndex].HeaderText.Equals("Eliminar"))
+                        {
+                            var confirmResult = MessageBox.Show($"¿Estás seguro de que deseas eliminar el producto '{nombreProducto}'?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                            if (confirmResult == DialogResult.Yes)
+                            {
+                                EliminarProductoDeCSV(codigoValue);
+                                MessageBox.Show("Producto eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                CargarProductosEnDataGridView();
+                                LimpiarCasillas();
+                                pboxAceptarEditar.Visible = false;
+                                pboxCancelar.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void CargarDatosParaEdicion(string codigo)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(NOMBRE_ARCHIVO))
+                {
+                    sr.ReadLine(); // Saltar la primera línea (encabezado)
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] campos = line.Split(',');
+                        if (campos[0] == codigo)
+                        {
+                            txtCodigo.Text = campos[0];
+                            txtNombre.Text = campos[1];
+                            txtCantidad.Text = campos[2];
+                            txtCantidadMinima.Text = campos[3];
+                            cboxUdMedidas.SelectedItem = campos[4];
+                            txtCosto.Text = campos[5];
+                            txtPrecio.Text = campos[6];
+                            cboxSiYNo.SelectedItem = campos[7];
+                            pnlDesplegar.Visible = true;
+                            pboxAceptarEditar.Visible = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos para edición: {ex.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void EliminarProductoDeCSV(string codigo)
+        {
+            try
+            {
+                string tempFile = Path.GetTempFileName();
+                var linesToKeep = File.ReadLines(NOMBRE_ARCHIVO).Where(l => !l.StartsWith(codigo + ","));
+                File.WriteAllLines(tempFile, linesToKeep);
+                File.Delete(NOMBRE_ARCHIVO);
+                File.Move(tempFile, NOMBRE_ARCHIVO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar el producto: {ex.Message}", "Error de eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
@@ -311,7 +418,7 @@ namespace sistemaCompra
             {
                 using (StreamReader sr = new StreamReader(NOMBRE_ARCHIVO))
                 {
-                    sr.ReadLine(); // Saltar la primera línea (encabezado)
+                    sr.ReadLine();
                     while (!sr.EndOfStream)
                     {
                         string[] campos = sr.ReadLine().Split(',');
@@ -332,70 +439,14 @@ namespace sistemaCompra
             return maxCodigo;
         }
 
-        private void pboxAceptarAgregar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtCantidad.Text) || cboxUdMedidas.SelectedItem == null ||
-                string.IsNullOrWhiteSpace(txtCosto.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text) ||
-                cboxSiYNo.SelectedItem == null)
-            {
-                MessageBox.Show("Por favor complete todos los campos antes de agregar el producto.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                string codigo = txtCodigo.Text;
-                if (VerificarCodigoExistente(codigo))
-                {
-                    int maxCodigo = ObtenerCodigoMasAlto();
-                    MessageBox.Show($"El código ya existe. Use un código superior al último código más alto, por ejemplo, {maxCodigo + 1}.", "Código Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    string nombre = txtNombre.Text;
-                    string cantidad = txtCantidad.Text;
-                    string cantidadMinima = txtCantidadMinima.Text;
-                    string unidadMedida = cboxUdMedidas.SelectedItem.ToString();
-                    string costo = txtCosto.Text;
-                    string precio = txtPrecio.Text;
-                    string tieneIVA = cboxSiYNo.SelectedItem.ToString();
-
-                    AgregarProductoAlCSV(codigo, nombre, cantidad, cantidadMinima, unidadMedida, costo, precio, tieneIVA);
-                }
-            }
-
-        }
-
-        private void pboxEliminar_Click(object sender, EventArgs e)
-        {
-            // Eliminar el producto seleccionado
-            if (dtgvListaProductos.SelectedRows.Count > 0)
-            {
-                DialogResult confirmResult = MessageBox.Show("¿Estás seguro de que quieres eliminar este producto?",
-                                                             "Confirmar Eliminación",
-                                                             MessageBoxButtons.YesNo,
-                                                             MessageBoxIcon.Warning);
-                if (confirmResult == DialogResult.Yes)
-                {
-                    DataGridViewRow filaSeleccionada = dtgvListaProductos.SelectedRows[0];
-                    string codigo = filaSeleccionada.Cells[0].Value.ToString();
-                    EliminarProductoDeCSV(codigo);
-
-                    // Volver a cargar los productos en el DataGridView
-                    CargarProductosEnDataGridView();
-                    LimpiarCasillas();
-                }
-            }
-        }
-        private void EliminarProductoDeCSV(string codigo)
-        {
-            var lineas = File.ReadAllLines(NOMBRE_ARCHIVO);
-            var lineasAGuardar = lineas.Where(linea => !linea.StartsWith(codigo + ","));
-            File.WriteAllLines(NOMBRE_ARCHIVO, lineasAGuardar);
-        }
-
         private void txtCantidadMinima_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
