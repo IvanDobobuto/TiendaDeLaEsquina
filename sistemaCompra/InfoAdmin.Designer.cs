@@ -110,7 +110,7 @@
             label1.Font = new Font("OCR A Extended", 9F, FontStyle.Italic, GraphicsUnit.Point);
             label1.Location = new Point(700, 387);
             label1.Name = "label1";
-            label1.Size = new Size(286, 61);
+            label1.Size = new Size(286, 69);
             label1.TabIndex = 7;
             label1.Text = "Puedes exportar los datos de Usuario, Producto y Cliente que se encuentren guardados en el programa, a través de una copia de ellos como archivos del tipo .csv.";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -128,6 +128,7 @@
             Controls.Add(lblControl);
             Controls.Add(label2);
             Controls.Add(lblBienvenido);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "InfoAdmin";
             Text = "InfoAdmin";
             ResumeLayout(false);

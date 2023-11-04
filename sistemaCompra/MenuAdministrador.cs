@@ -33,7 +33,9 @@ namespace sistemaCompra
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("En esta ventana se encuentran las distintas opciones \ny funcionalidades a las que tiene acceso el Administrador.");
+            var form = Application.OpenForms.OfType<InfoAdmin>().FirstOrDefault();
+            InfoAdmin infoAdmin = form ?? new InfoAdmin();
+            AgregarFormulario(infoAdmin);
         }
 
         private void controlDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
