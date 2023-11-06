@@ -182,29 +182,6 @@ namespace sistemaCompra
                 cajaClave.Clear();
             }
         }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            string ruta = @"C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\Resources\Manual.txt";
-
-            if (System.IO.File.Exists(ruta))
-            {
-
-                try
-                {
-
-                    Process.Start("notepad.exe", ruta);
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("No se pudo abrir el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("El archivo no existe en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
     }
 }
