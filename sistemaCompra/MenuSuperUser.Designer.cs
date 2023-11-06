@@ -44,6 +44,7 @@
             pboxbaseProductos = new PictureBox();
             pboxBaseClientes = new PictureBox();
             pictureBox2 = new PictureBox();
+            pboxAvatarSuperUser = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pboxReseteoUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxSuperUsuario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxReseteoDatos).BeginInit();
@@ -58,16 +59,17 @@
             ((System.ComponentModel.ISupportInitialize)pboxbaseProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pboxBaseClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pboxAvatarSuperUser).BeginInit();
             SuspendLayout();
             // 
             // pboxReseteoUsuarios
             // 
             pboxReseteoUsuarios.ErrorImage = null;
             pboxReseteoUsuarios.Image = Properties.Resources.InterfazSuperUsuario31;
-            pboxReseteoUsuarios.Location = new Point(12, 127);
+            pboxReseteoUsuarios.Location = new Point(12, 121);
             pboxReseteoUsuarios.Margin = new Padding(3, 2, 3, 2);
             pboxReseteoUsuarios.Name = "pboxReseteoUsuarios";
-            pboxReseteoUsuarios.Size = new Size(195, 30);
+            pboxReseteoUsuarios.Size = new Size(195, 36);
             pboxReseteoUsuarios.SizeMode = PictureBoxSizeMode.Zoom;
             pboxReseteoUsuarios.TabIndex = 14;
             pboxReseteoUsuarios.TabStop = false;
@@ -76,7 +78,7 @@
             // pboxSuperUsuario
             // 
             pboxSuperUsuario.Image = Properties.Resources.InterfazSuperUsuario1;
-            pboxSuperUsuario.Location = new Point(280, 12);
+            pboxSuperUsuario.Location = new Point(260, 12);
             pboxSuperUsuario.Name = "pboxSuperUsuario";
             pboxSuperUsuario.Size = new Size(236, 36);
             pboxSuperUsuario.SizeMode = PictureBoxSizeMode.Zoom;
@@ -90,7 +92,7 @@
             pboxReseteoDatos.Location = new Point(12, 204);
             pboxReseteoDatos.Margin = new Padding(3, 2, 3, 2);
             pboxReseteoDatos.Name = "pboxReseteoDatos";
-            pboxReseteoDatos.Size = new Size(195, 30);
+            pboxReseteoDatos.Size = new Size(195, 36);
             pboxReseteoDatos.SizeMode = PictureBoxSizeMode.Zoom;
             pboxReseteoDatos.TabIndex = 22;
             pboxReseteoDatos.TabStop = false;
@@ -117,7 +119,7 @@
             pnlMostrarMensaje.Controls.Add(pboxAceptarPassword);
             pnlMostrarMensaje.Controls.Add(pboxCancelar);
             pnlMostrarMensaje.Controls.Add(pboxCajaMensaje);
-            pnlMostrarMensaje.Location = new Point(261, 143);
+            pnlMostrarMensaje.Location = new Point(241, 221);
             pnlMostrarMensaje.Name = "pnlMostrarMensaje";
             pnlMostrarMensaje.Size = new Size(275, 173);
             pnlMostrarMensaje.TabIndex = 24;
@@ -196,7 +198,7 @@
             // 
             pboxBaseUsuarios.ErrorImage = null;
             pboxBaseUsuarios.Image = Properties.Resources.InterfazSuperUsuario6;
-            pboxBaseUsuarios.Location = new Point(579, 127);
+            pboxBaseUsuarios.Location = new Point(552, 121);
             pboxBaseUsuarios.Margin = new Padding(3, 2, 3, 2);
             pboxBaseUsuarios.Name = "pboxBaseUsuarios";
             pboxBaseUsuarios.Size = new Size(195, 36);
@@ -209,7 +211,7 @@
             // 
             pboxbaseProductos.ErrorImage = null;
             pboxbaseProductos.Image = Properties.Resources.InterfazSuperUsuario7;
-            pboxbaseProductos.Location = new Point(579, 291);
+            pboxbaseProductos.Location = new Point(552, 291);
             pboxbaseProductos.Margin = new Padding(3, 2, 3, 2);
             pboxbaseProductos.Name = "pboxbaseProductos";
             pboxbaseProductos.Size = new Size(195, 36);
@@ -222,7 +224,7 @@
             // 
             pboxBaseClientes.ErrorImage = null;
             pboxBaseClientes.Image = Properties.Resources.Interfazsuperusuario8;
-            pboxBaseClientes.Location = new Point(579, 204);
+            pboxBaseClientes.Location = new Point(552, 204);
             pboxBaseClientes.Margin = new Padding(3, 2, 3, 2);
             pboxBaseClientes.Name = "pboxBaseClientes";
             pboxBaseClientes.Size = new Size(195, 36);
@@ -243,12 +245,23 @@
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
+            // pboxAvatarSuperUser
+            // 
+            pboxAvatarSuperUser.Image = Properties.Resources.InterfazSuperUsuario2;
+            pboxAvatarSuperUser.Location = new Point(310, 71);
+            pboxAvatarSuperUser.Name = "pboxAvatarSuperUser";
+            pboxAvatarSuperUser.Size = new Size(131, 131);
+            pboxAvatarSuperUser.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxAvatarSuperUser.TabIndex = 29;
+            pboxAvatarSuperUser.TabStop = false;
+            // 
             // MenuSuperUser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(786, 404);
+            ClientSize = new Size(761, 404);
+            Controls.Add(pboxAvatarSuperUser);
             Controls.Add(pictureBox2);
             Controls.Add(pboxBaseClientes);
             Controls.Add(pboxbaseProductos);
@@ -280,6 +293,7 @@
             ((System.ComponentModel.ISupportInitialize)pboxbaseProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)pboxBaseClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pboxAvatarSuperUser).EndInit();
             ResumeLayout(false);
         }
 
@@ -299,5 +313,6 @@
         private PictureBox pboxAceptarResetDatos;
         private PictureBox pboxResetFabrica;
         private PictureBox pictureBox2;
+        private PictureBox pboxAvatarSuperUser;
     }
 }

@@ -14,7 +14,7 @@ namespace sistemaCompra
 {
     public partial class MenuSuperUser : Form
     {
-        
+
         public MenuSuperUser()
         {
             InitializeComponent();
