@@ -254,6 +254,7 @@
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(124, 23);
             txtBuscarNombre.TabIndex = 88;
+            txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
             // 
             // CtrlUsuario
             // 

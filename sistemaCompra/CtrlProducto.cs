@@ -26,6 +26,8 @@ namespace sistemaCompra
             txtCosto.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
             txtPrecio.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
             txtCantidadMinima.KeyPress += new KeyPressEventHandler(ValidarNumerosDecimales);
+            txtBuscarCodigo.KeyPress += new KeyPressEventHandler(ValidarNumerosEnteros);
+            txtBuscarNombre.KeyPress += new KeyPressEventHandler(txtNombre_KeyPress);
 
             Image imgEditar = Image.FromFile("VentasEditar.png");
             Image imgEliminar = Image.FromFile("ControlEliminar.png");
@@ -44,6 +46,14 @@ namespace sistemaCompra
             eliminarImageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajusta la imagen al tamaño de la celda
             dtgvListaProductos.Columns.Add(eliminarImageColumn);
 
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void ValidarNumerosEnteros(object sender, KeyPressEventArgs e)
@@ -114,7 +124,6 @@ namespace sistemaCompra
         private DataTable ObtenerTablaProductos()
         {
             DataTable dt = new DataTable();
-
             dt.Columns.Add("Codigo");
             dt.Columns.Add("Nombre");
             dt.Columns.Add("Cantidad");
@@ -127,7 +136,7 @@ namespace sistemaCompra
             try
             {
                 var lines = File.ReadAllLines(NOMBRE_ARCHIVO);
-                var data = lines.Skip(1) // Salta la primera línea (encabezado)
+                var data = lines.Skip(1)
                                 .Where(l => !string.IsNullOrWhiteSpace(l))
                                 .Select(l => l.Split(','))
                                 .Where(arr => arr.Length == dt.Columns.Count)
@@ -155,6 +164,7 @@ namespace sistemaCompra
 
             return dt;
         }
+
 
         private void CargarProductosEnDataGridView()
         {
@@ -383,25 +393,15 @@ namespace sistemaCompra
             }
         }
 
-        // Método para verificar si un código ya existe en el archivo CSV
+        // Método para verificar si un código ya existe en el archivo CSV utilizando LINQ
         private bool VerificarCodigoExistente(string codigo)
         {
             bool codigoExistente = false;
             try
             {
-                using (StreamReader sr = new StreamReader(NOMBRE_ARCHIVO))
-                {
-                    sr.ReadLine(); // Saltar la primera línea (encabezado)
-                    while (!sr.EndOfStream)
-                    {
-                        string[] campos = sr.ReadLine().Split(',');
-                        if (campos[0] == codigo)
-                        {
-                            codigoExistente = true;
-                            break;
-                        }
-                    }
-                }
+                var lines = File.ReadAllLines(NOMBRE_ARCHIVO);
+                codigoExistente = lines.Skip(1) // Saltar la primera línea (encabezado)
+                                      .Any(line => line.Split(',')[0] == codigo);
             }
             catch (Exception ex)
             {
@@ -410,27 +410,16 @@ namespace sistemaCompra
             return codigoExistente;
         }
 
-        // Método para obtener el código más alto en el archivo CSV
+        // Método para obtener el código más alto en el archivo CSV utilizando LINQ
         private int ObtenerCodigoMasAlto()
         {
             int maxCodigo = 0;
             try
             {
-                using (StreamReader sr = new StreamReader(NOMBRE_ARCHIVO))
-                {
-                    sr.ReadLine();
-                    while (!sr.EndOfStream)
-                    {
-                        string[] campos = sr.ReadLine().Split(',');
-                        if (int.TryParse(campos[0], out int codigo))
-                        {
-                            if (codigo > maxCodigo)
-                            {
-                                maxCodigo = codigo;
-                            }
-                        }
-                    }
-                }
+                var lines = File.ReadAllLines(NOMBRE_ARCHIVO);
+                maxCodigo = lines.Skip(1)
+                                .Select(line => int.TryParse(line.Split(',')[0], out int codigo) ? codigo : 0)
+                                .Max();
             }
             catch (Exception ex)
             {
@@ -447,6 +436,40 @@ namespace sistemaCompra
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void txtBuscarCodigo_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBuscarCodigo.Text))
+            {
+                string textoBusqueda = txtBuscarCodigo.Text;
+                DataTable dt = ObtenerTablaProductos();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"Codigo LIKE '%{textoBusqueda}%'";
+                DataTable dtFiltered = dv.ToTable();
+                MostrarDataGrid(dtFiltered);
+            }
+            else
+            {
+                CargarProductosEnDataGridView();
+            }
+        }
+
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBuscarNombre.Text))
+            {
+                string textoBusqueda = txtBuscarNombre.Text;
+                DataTable dt = ObtenerTablaProductos();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"Nombre LIKE '%{textoBusqueda}%'";
+                DataTable dtFiltered = dv.ToTable();
+                MostrarDataGrid(dtFiltered);
+            }
+            else
+            {
+                CargarProductosEnDataGridView();
+            }
         }
     }
 }

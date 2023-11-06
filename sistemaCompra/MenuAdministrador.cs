@@ -29,55 +29,63 @@ namespace sistemaCompra
             this.pnlMenuAdministrador.Tag = ejemplo;
             ejemplo.Show();
         }
+        private void MostrarMensajeInstrucciones(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private T ObtenerFormularioExistente<T>() where T : Form, new()
+        {
+            return Application.OpenForms.OfType<T>().FirstOrDefault() ?? new T();
+        }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Application.OpenForms.OfType<InfoAdmin>().FirstOrDefault();
-            InfoAdmin infoAdmin = form ?? new InfoAdmin();
+            var infoAdmin = ObtenerFormularioExistente<InfoAdmin>();
             AgregarFormulario(infoAdmin);
         }
 
         private void controlDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Application.OpenForms.OfType<CtrlUsuario>().FirstOrDefault();
-            CtrlUsuario ctrlUsuario = form ?? new CtrlUsuario();
-            ctrlUsuario.Shown += (s, ev) =>
-            {
-                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo usuario", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
+            var ctrlUsuario = ObtenerFormularioExistente<CtrlUsuario>();
+            ctrlUsuario.Shown += (s, ev) => MostrarMensajeInstrucciones("Debe presionar el Botón + cada vez que desee agregar un nuevo usuario");
             AgregarFormulario(ctrlUsuario);
         }
 
         private void controlDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Application.OpenForms.OfType<CtrlProducto>().FirstOrDefault();
-            CtrlProducto ctrlProducto = form ?? new CtrlProducto();
-            ctrlProducto.Shown += (s, ev) =>
-            {
-                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo producto", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
+            var ctrlProducto = ObtenerFormularioExistente<CtrlProducto>();
+            ctrlProducto.Shown += (s, ev) => MostrarMensajeInstrucciones("Debe presionar el Botón + cada vez que desee agregar un nuevo producto");
             AgregarFormulario(ctrlProducto);
         }
 
         private void controlDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Application.OpenForms.OfType<CtrlCliente>().FirstOrDefault();
-            CtrlCliente ctrlCliente = form ?? new CtrlCliente();
-            ctrlCliente.Shown += (s, ev) =>
-            {
-                MessageBox.Show("Debe presionar el Botón + cada vez que desee agregar un nuevo cliente", "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
+            var ctrlCliente = ObtenerFormularioExistente<CtrlCliente>();
+            ctrlCliente.Shown += (s, ev) => MostrarMensajeInstrucciones("Debe presionar el Botón + cada vez que desee agregar un nuevo cliente");
             AgregarFormulario(ctrlCliente);
+        }
+        private void MostrarMensajes(List<string> mensajes, string titulo)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var mensaje in mensajes)
+            {
+                sb.AppendLine(mensaje);
+                sb.AppendLine("-------------------------------");
+            }
+            MessageBox.Show(sb.ToString(), titulo);
         }
 
         private void importarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Para importar usuarios, el formato a usarse debe ser el siguiente:\nNombre de usuario,Correo electrónico,Clave,Tipo de usuario");
+            MessageBox.Show("Para importar usuarios, el formato a usarse debe ser el siguiente:\nNombre de Usuario,Correo Electronico,Password,Tipo de Usuario");
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory; // Directorio actual del programa
-            openFileDialog.Filter = "Archivos CSV|*.csv";
-            openFileDialog.Title = "Seleccionar archivo CSV de usuarios";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory, // Directorio actual del programa
+                Filter = "Archivos CSV|*.csv",
+                Title = "Seleccionar archivo CSV de usuarios"
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -90,45 +98,32 @@ namespace sistemaCompra
                     {
                         string firstLine = lines[0];
                         string[] headers = firstLine.Split(',');
-                        if (headers.Length != 3 || headers[0] != "Nombre de usuario" || headers[1] != "Clave" || headers[2] != "Tipo de usuario")
+                        if (headers.Length != 4 || !headers.SequenceEqual(new[] { "Nombre de Usuario", "Correo Electronico", "Password", "Tipo de Usuario" }))
                         {
                             MessageBox.Show("El formato del archivo no es válido. Asegúrate de que cumpla con el formato especificado.");
                             return;
                         }
 
-                        for (int i = 1; i < lines.Length; i++) // Empezar en la segunda línea
-                        {
-                            string line = lines[i];
-                            string[] values = line.Split(',');
-                            if (values.Length == 3)
+                        var usuarios = lines.Skip(1)
+                            .Select(line => line.Split(','))
+                            .Where(values => values.Length == 4)
+                            .Select(values =>
                             {
                                 string nombreUsuario = values[0];
-                                string clave = values[1];
-                                string tipoUsuario = values[2];
+                                string correoElectronico = values[1];
+                                string password = values[2];
+                                string tipoUsuario = values[3];
 
                                 // Agregar el usuario al archivo de usuarios.csv
-                                File.AppendAllText("usuarios.csv", $"{nombreUsuario},{clave},{tipoUsuario}\n");
+                                File.AppendAllText("usuarios.csv", $"{nombreUsuario},{correoElectronico},{password},{tipoUsuario}\n");
 
                                 // Agregar el mensaje para la notificación
-                                string mensaje = $"Nombre de Usuario: {nombreUsuario}, Clave: {clave}, Tipo de Usuario: {tipoUsuario}";
-                                mensajes.Add(mensaje);
-                            }
-                            else
-                            {
-                                MessageBox.Show("El formato del archivo no es válido. Asegúrate de que cumpla con el formato especificado.");
-                                return;
-                            }
-                        }
+                                return $"Nombre de Usuario: {nombreUsuario}, Correo Electrónico: {correoElectronico}, Password: {password}, Tipo de Usuario: {tipoUsuario}";
+                            })
+                            .ToList();
 
                         // Mostrar todos los usuarios importados en un solo mensaje
-                        StringBuilder sb = new StringBuilder();
-                        foreach (var mensaje in mensajes)
-                        {
-                            sb.AppendLine(mensaje);
-                            sb.AppendLine("-------------------------------");
-                        }
-                        MessageBox.Show(sb.ToString(), "Usuarios Importados");
-                        MessageBox.Show("Los datos se han importado con éxito. Por favor, cierre la ventana y ábrala de nuevo para actualizar la lista de usuarios.");
+                        MostrarMensajesEnLotes(usuarios, "Usuarios Importados");
                     }
                     else
                     {
@@ -189,7 +184,6 @@ namespace sistemaCompra
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
-                List<string> mensajes = new List<string>();
                 try
                 {
                     string[] lines = File.ReadAllLines(filePath);
@@ -203,58 +197,65 @@ namespace sistemaCompra
                             return;
                         }
 
-                        for (int i = 1; i < lines.Length; i++) // Empezar en la segunda línea
+                        int batchSize = 10; // Tamaño del lote
+                        int totalProducts = lines.Length - 1; // Excluyendo la primera línea de encabezados
+
+                        for (int i = 1; i < totalProducts; i += batchSize)
                         {
-                            string line = lines[i];
-                            string[] values = line.Split(',');
-                            if (values.Length == 8)
+                            var currentBatch = lines.Skip(i).Take(batchSize);
+                            StringBuilder sb = new StringBuilder();
+                            foreach (var line in currentBatch)
                             {
-                                string codigo = values[0];
-                                string nombre = values[1];
-                                int cantidad = Convert.ToInt32(values[2]);
-                                int cantidadMinima = Convert.ToInt32(values[3]);
-                                string unidadDeMedida = values[4];
-                                decimal costoUnitario = Convert.ToDecimal(values[5]);
-                                decimal precioDeVenta = Convert.ToDecimal(values[6]);
-                                string tieneIVA;
-                                if (values[7].Trim().Equals("SI", StringComparison.OrdinalIgnoreCase))
+                                string[] values = line.Split(',');
+                                if (values.Length == 8)
                                 {
-                                    tieneIVA = "SI";
-                                }
-                                else if (values[7].Trim().Equals("NO", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    tieneIVA = "NO";
+                                    string codigo = values[0];
+                                    string nombre = values[1];
+                                    int cantidad = Convert.ToInt32(values[2]);
+                                    int cantidadMinima = Convert.ToInt32(values[3]);
+                                    string unidadDeMedida = values[4];
+                                    decimal costoUnitario = Convert.ToDecimal(values[5]);
+                                    decimal precioDeVenta = Convert.ToDecimal(values[6]);
+                                    string tieneIVA;
+                                    if (values[7].Trim().Equals("SI", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        tieneIVA = "SI";
+                                    }
+                                    else if (values[7].Trim().Equals("NO", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        tieneIVA = "NO";
+                                    }
+                                    else
+                                    {
+                                        throw new FormatException("El valor de tieneIVA debe ser 'SI' o 'NO'.");
+                                    }
+
+                                    // Agregar el producto al archivo de inventario.csv
+                                    using (StreamWriter file = new StreamWriter("inventario.csv", true))
+                                    {
+                                        file.WriteLine($"{codigo},{nombre},{cantidad},{cantidadMinima},{unidadDeMedida},{costoUnitario},{precioDeVenta},{tieneIVA}");
+                                    }
+
+                                    // Agregar el mensaje para la notificación
+                                    string mensaje = $"Código: {codigo}, Nombre: {nombre}, Cantidad: {cantidad}, Cantidad Mínima: {cantidadMinima}, Unidad de Medida: {unidadDeMedida}, Costo Unitario: {costoUnitario}, Precio de Venta: {precioDeVenta}, Tiene IVA: {tieneIVA}";
+                                    sb.AppendLine(mensaje);
+                                    sb.AppendLine("-------------------------------");
                                 }
                                 else
                                 {
-                                    throw new FormatException("El valor de tieneIVA debe ser 'SI' o 'NO'.");
+                                    MessageBox.Show("El formato del archivo no es válido. Asegúrate de que cumpla con el formato especificado.");
+                                    return;
                                 }
-
-                                // Agregar el producto al archivo de inventario.csv
-                                using (StreamWriter file = new StreamWriter("inventario.csv", true))
-                                {
-                                    file.WriteLine($"{codigo},{nombre},{cantidad},{cantidadMinima},{unidadDeMedida},{costoUnitario},{precioDeVenta},{tieneIVA}");
-                                }
-
-                                // Agregar el mensaje para la notificación
-                                string mensaje = $"Código: {codigo}, Nombre: {nombre}, Cantidad: {cantidad}, Cantidad Mínima: {cantidadMinima}, Unidad de Medida: {unidadDeMedida}, Costo Unitario: {costoUnitario}, Precio de Venta: {precioDeVenta}, Tiene IVA: {tieneIVA}";
-                                mensajes.Add(mensaje);
                             }
-                            else
+
+                            // Mostrar el resumen de cada lote y preguntar al usuario si desea continuar viendo la lista
+                            var result = MessageBox.Show(sb.ToString(), "Productos Importados", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.No)
                             {
-                                MessageBox.Show("El formato del archivo no es válido. Asegúrate de que cumpla con el formato especificado.");
-                                return;
+                                break;
                             }
                         }
 
-                        // Mostrar todos los productos importados en un solo mensaje
-                        StringBuilder sb = new StringBuilder();
-                        foreach (var mensaje in mensajes)
-                        {
-                            sb.AppendLine(mensaje);
-                            sb.AppendLine("-------------------------------");
-                        }
-                        MessageBox.Show(sb.ToString(), "Productos Importados");
                         MessageBox.Show("Los datos se han importado con éxito. Por favor, cierre la ventana y ábrala de nuevo para actualizar la lista de productos.");
                     }
                     else
@@ -370,14 +371,7 @@ namespace sistemaCompra
                         }
 
                         // Mostrar todos los clientes importados en un solo mensaje
-                        StringBuilder sb = new StringBuilder();
-                        foreach (var mensaje in mensajes)
-                        {
-                            sb.AppendLine(mensaje);
-                            sb.AppendLine("-------------------------------");
-                        }
-                        MessageBox.Show(sb.ToString(), "Clientes Importados");
-                        MessageBox.Show("Los datos se han importado con éxito. Por favor, cierre la ventana y ábrala de nuevo para actualizar la lista de clientes.");
+                        MostrarMensajesEnLotes(mensajes, "Clientes Importados");
                     }
                     else
                     {
@@ -425,6 +419,27 @@ namespace sistemaCompra
                 }
             }
         }
+        private void MostrarMensajesEnLotes(List<string> mensajes, string titulo)
+        {
+            const int loteSize = 10;
+            for (int i = 0; i < mensajes.Count; i += loteSize)
+            {
+                var loteMensajes = mensajes.Skip(i).Take(loteSize);
+                StringBuilder sb = new StringBuilder();
+                foreach (var mensaje in loteMensajes)
+                {
+                    sb.AppendLine(mensaje);
+                    sb.AppendLine("-------------------------------");
+                }
+                sb.AppendLine("Mostrar más resultados (Sí/No)?");
+                var respuesta = MessageBox.Show(sb.ToString(), titulo, MessageBoxButtons.YesNo);
+                if (respuesta == DialogResult.No)
+                {
+                    break;
+                }
+            }
+        }
+
         private void pnlMenuAdministrador_Paint(object sender, PaintEventArgs e)
         {
 
@@ -442,8 +457,7 @@ namespace sistemaCompra
 
         private void MenuAdministrador_Load(object sender, EventArgs e)
         {
-            var form = Application.OpenForms.OfType<InfoAdmin>().FirstOrDefault();
-            InfoAdmin infoAdmin = form ?? new InfoAdmin();
+            var infoAdmin = ObtenerFormularioExistente<InfoAdmin>();
             AgregarFormulario(infoAdmin);
         }
     }

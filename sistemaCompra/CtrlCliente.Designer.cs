@@ -359,6 +359,7 @@
             txtBuscarIdentificacion.Name = "txtBuscarIdentificacion";
             txtBuscarIdentificacion.Size = new Size(124, 23);
             txtBuscarIdentificacion.TabIndex = 85;
+            txtBuscarIdentificacion.TextChanged += txtBuscarIdentificacion_TextChanged;
             // 
             // CtrlCliente
             // 

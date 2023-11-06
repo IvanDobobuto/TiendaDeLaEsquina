@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pboxCtrlProductos = new PictureBox();
             pboxAgregar = new PictureBox();
             pnlDesplegar = new Panel();
@@ -339,14 +339,14 @@
             // 
             // dtgvListaProductos
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtgvListaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgvListaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgvListaProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvListaProductos.Location = new Point(26, 208);
             dtgvListaProductos.Name = "dtgvListaProductos";
@@ -361,6 +361,7 @@
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(127, 23);
             txtBuscarNombre.TabIndex = 80;
+            txtBuscarNombre.TextChanged += txtBuscarNombre_TextChanged;
             // 
             // txtBuscarCodigo
             // 
@@ -368,6 +369,7 @@
             txtBuscarCodigo.Name = "txtBuscarCodigo";
             txtBuscarCodigo.Size = new Size(124, 23);
             txtBuscarCodigo.TabIndex = 81;
+            txtBuscarCodigo.TextChanged += txtBuscarCodigo_TextChanged;
             // 
             // lblBuscarNombre
             // 

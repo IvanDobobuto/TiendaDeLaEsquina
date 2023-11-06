@@ -104,7 +104,7 @@ namespace sistemaCompra
         private void pboxAceptarPassword_Click(object sender, EventArgs e)
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "usuarios.csv");
-            string[] defaultUsers = { "Nombre de usuario,Clave,Tipo de usuario", "admin,admin,Admin", "supersu,supersu,Superuser", "cajero,cajero,Cajero" };
+            string[] defaultUsers = { "Nombre de Usuario,Correo Electronico,Password,Tipo de Usuario", "admin,admin@gmail.com,admin,Admin", "supersu,supersu@gmail.com,supersu,Superuser", "cajero,cajero@gmail.com,cajero,Cajero" };
 
             try
             {
@@ -175,7 +175,7 @@ namespace sistemaCompra
             string usuariosFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "usuarios.csv");
             string inventarioFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inventario.csv");
             string clientesFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "clientes.csv");
-            string[] defaultUsers = { "admin,admin,Admin", "supersu,supersu,Superuser", "cajero,cajero,Cajero" };
+            string[] defaultUsers = { "admin,admin@gmail.com,admin,Admin", "supersu,supersu@gmail.com,supersu,Superuser", "cajero,cajero@gmail.com,cajero,Cajero" };
 
             try
             {

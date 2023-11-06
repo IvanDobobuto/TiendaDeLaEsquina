@@ -1,9 +1,4 @@
 Codigo,Nombre,Cantidad,CantidadMinima,UnidadDeMedida,CostoUnitario,PrecioDeVenta,tieneIVA
-1,Arroz,100,10,Kilogramo (Kg),1,2,SI
-3,Leche,200,20,Litro (L),5,8,NO
-4,Pan,150,15,Unidad (Ud.),3,5,SI
-5,Huevos,50,5,Unidad (Ud.),2,3,NO
-6,Aceite,80,8,Litro (L),4,7,SI
-8,Sal,80,8,Kilogramo (Kg),1,3,NO
-7,Azucar,120,12,Kilogramo (Kg),2,4,SI
-9,Caraotas,123,100,Kilogramo (Kg),123,123,SI
+1,Pan,39,100,Unidad (Ud.),10,15,SI
+68,Churros,60,20,Unidad (Ud.),10,20,SI
+3,Churro,380,20,Unidad (Ud.),3,6,SI

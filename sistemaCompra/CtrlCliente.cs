@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Media;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace sistemaCompra
 {
@@ -23,6 +25,7 @@ namespace sistemaCompra
             // Asignar eventos de teclado para validación de entrada
             txtIdentificacion.KeyPress += new KeyPressEventHandler(ValidarNumerosEnteros);
             txtTelefono.KeyPress += new KeyPressEventHandler(ValidarNumerosEnteros);
+            txtBuscarIdentificacion.KeyPress += new KeyPressEventHandler(ValidarNumerosEnteros);
 
             // Asignar eventos de ajuste de nombre y apellido
             txtNombre.Leave += new EventHandler(txtNombre_Leave);
@@ -112,25 +115,20 @@ namespace sistemaCompra
         {
             DataTable dt = new DataTable();
 
-            // Leer el archivo y cargar los datos en el DataTable
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string[] headers = sr.ReadLine().Split(',');
-                foreach (string header in headers)
-                {
-                    dt.Columns.Add(header);
-                }
+            // Leer el archivo y cargar los datos en el DataTable usando LINQ
+            string[] lines = File.ReadAllLines(path);
+            string[] headers = lines[0].Split(',');
+            dt.Columns.AddRange(headers.Select(header => new DataColumn(header)).ToArray());
 
-                while (!sr.EndOfStream)
+            foreach (var line in lines.Skip(1))
+            {
+                string[] columns = line.Split(',');
+                DataRow row = dt.NewRow();
+                for (int i = 0; i < columns.Length; i++)
                 {
-                    string[] rows = sr.ReadLine().Split(',');
-                    DataRow dr = dt.NewRow();
-                    for (int i = 0; i < headers.Length; i++)
-                    {
-                        dr[i] = rows[i];
-                    }
-                    dt.Rows.Add(dr);
+                    row[i] = columns[i];
                 }
+                dt.Rows.Add(row);
             }
 
             // Asignar DataTable a DataGridView
@@ -292,20 +290,17 @@ namespace sistemaCompra
         {
             if (File.Exists(path))
             {
-                using (StreamReader sr = new StreamReader(path))
+                var lines = File.ReadLines(path);
+                foreach (var line in lines)
                 {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
+                    var datos = line.Split(',');
+                    if (!edicion && datos[0] == cedula && datos[6] == tipoDocumento)
                     {
-                        string[] datos = line.Split(',');
-                        if (!edicion && datos[0] == cedula && datos[6] == tipoDocumento)
-                        {
-                            return false; // Cedula ya existe para el mismo tipo de documento al agregar
-                        }
-                        else if (edicion && datos[0] == cedulaActual && datos[6] == tipoDocumento)
-                        {
-                            continue; // Omitir la comparación de cédula al editar
-                        }
+                        return false; // Cedula ya existe para el mismo tipo de documento al agregar
+                    }
+                    else if (edicion && datos[0] == cedulaActual && datos[6] == tipoDocumento)
+                    {
+                        continue; // Omitir la comparación de cédula al editar
                     }
                 }
             }
@@ -392,28 +387,21 @@ namespace sistemaCompra
             pboxCancelar.Visible = true;
             try
             {
-                using (StreamReader sr = new StreamReader(path))
+                var lines = File.ReadLines(path);
+                var campos = lines.Skip(1).Select(line => line.Split(',')).FirstOrDefault(datos => datos[0] == cedula);
+
+                if (campos != null)
                 {
-                    sr.ReadLine(); // Saltar la primera línea (encabezado)
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] campos = line.Split(',');
-                        if (campos[0] == cedula)
-                        {
-                            txtIdentificacion.Text = campos[0];
-                            txtNombre.Text = campos[1];
-                            txtApellido.Text = campos[2];
-                            txtDireccion.Text = campos[3];
-                            txtTelefono.Text = campos[4];
-                            txtCorreo.Text = campos[5];
-                            cboxTipoIdentificacion.SelectedItem = campos[6];
-                            cboxSiYNo.SelectedItem = campos[7];
-                            pnlDesplegar.Visible = true;
-                            pboxAceptarEditar.Visible = true;
-                            break;
-                        }
-                    }
+                    txtIdentificacion.Text = campos[0];
+                    txtNombre.Text = campos[1];
+                    txtApellido.Text = campos[2];
+                    txtDireccion.Text = campos[3];
+                    txtTelefono.Text = campos[4];
+                    txtCorreo.Text = campos[5];
+                    cboxTipoIdentificacion.SelectedItem = campos[6];
+                    cboxSiYNo.SelectedItem = campos[7];
+                    pnlDesplegar.Visible = true;
+                    pboxAceptarEditar.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -426,7 +414,7 @@ namespace sistemaCompra
         {
             try
             {
-                string tempFile = Path.GetTempFileName();
+                var tempFile = Path.GetTempFileName();
                 var linesToKeep = File.ReadLines(path).Where(l => !l.StartsWith(cedula + ","));
                 File.WriteAllLines(tempFile, linesToKeep);
                 File.Delete(path);
@@ -469,6 +457,33 @@ namespace sistemaCompra
                         }
                     }
                 }
+            }
+        }
+        private void txtBuscarIdentificacion_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(txtBuscarIdentificacion.Text, @"^[0-9\-]*$"))
+            {
+                DataTable dt = new DataTable();
+                string[] lines = File.ReadAllLines(path);
+                string[] headers = lines[0].Split(',');
+                dt.Columns.AddRange(headers.Select(header => new DataColumn(header)).ToArray());
+
+                var dataRows = lines.Skip(1).Select(line => line.Split(',')).Where(columns => columns[0].Contains(txtBuscarIdentificacion.Text));
+                foreach (var columns in dataRows)
+                {
+                    DataRow row = dt.NewRow();
+                    for (int i = 0; i < columns.Length; i++)
+                    {
+                        row[i] = columns[i];
+                    }
+                    dt.Rows.Add(row);
+                }
+
+                dtgvListaClientes.DataSource = dt;
+            }
+            else if (string.IsNullOrWhiteSpace(txtBuscarIdentificacion.Text))
+            {
+                CargarDatosEnDataGridView();
             }
         }
     }

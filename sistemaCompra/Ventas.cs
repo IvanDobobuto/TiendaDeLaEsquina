@@ -20,6 +20,7 @@ using sistemaCompra.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Security.Policy;
 using System.util;
+using Microsoft.Win32;
 
 namespace sistemaCompra
 {
@@ -30,7 +31,6 @@ namespace sistemaCompra
         private Cliente clienteSeleccionado;
         double tipoCambioGlobal = 0;
         int playing = 0;
-        SoundPlayer Musica = new SoundPlayer(@"C:\Users\Usuario\Desktop\La Tienda de la Esquina - Grupo 3 - PR2\sistemaCompra\Resources\SFX\Music.wav");
 
         private void nombreTB_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -121,7 +121,6 @@ namespace sistemaCompra
                 productos.Add(producto);
             }
         }
-
         public void VerificarCantidadDisponible()
         {
             foreach (var producto in productos)
@@ -181,19 +180,29 @@ namespace sistemaCompra
 
         private void restarProducto(string codigoProducto, double cantidadVendida)
         {
-            foreach (Producto producto in productos)
+            string pathProductos = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inventario.csv");
+            string[] lines = File.ReadAllLines(pathProductos);
+            List<string> output = new List<string>();
+
+            for (int i = 0; i < lines.Length; i++)
             {
-                if (codigoProducto == producto.Codigo)
+                string line = lines[i];
+                string[] values = line.Split(',');
+                if (values[0] == codigoProducto)
                 {
-                    producto.Cantidad = producto.Cantidad - cantidadVendida;
-                    break;
+                    long currentCantidad = Convert.ToInt64(values[2]);
+                    long updatedCantidad = currentCantidad - Convert.ToInt64(cantidadVendida);
+                    values[2] = updatedCantidad.ToString();
+                    line = string.Join(",", values); // Actualizar la línea con los valores modificados
                 }
+                output.Add(line);
             }
+
+            File.WriteAllLines(pathProductos, output.ToArray());
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(cantidadTB.Text))
             {
                 MessageBox.Show("Asegúrate de completar todos los campos.");
@@ -207,12 +216,10 @@ namespace sistemaCompra
             }
 
             string buscador = textBox2.Text;
-
             bool productoEncontrado = false;
 
             foreach (Producto producto in productos)
             {
-
                 if (buscador == Convert.ToString(producto.Codigo))
                 {
                     productoEncontrado = true;
@@ -221,14 +228,11 @@ namespace sistemaCompra
                         MessageBox.Show($"El producto {producto.Nombre} no está disponible.");
                         break;
                     }
-
-
                     else if (producto.Cantidad < cantidad)
                     {
                         MessageBox.Show($"La cantidad solicitada del producto {producto.Nombre} es mayor a la disponible.");
                         break;
                     }
-
                     else
                     {
                         double precioUnitario = producto.PrecioDeVenta;
@@ -240,14 +244,50 @@ namespace sistemaCompra
                             IVA = "16%";
                             totalLinea = cantidad * precioUnitario * 1.16;
                         }
-
                         else
                         {
                             IVA = "0%";
                             totalLinea = cantidad * precioUnitario;
                         }
 
-                        factura.Rows.Add(producto.Codigo, producto.Nombre, cantidad, producto.UnidadDeMedida, precioUnitario, totalLinea, IVA);
+                        bool existeEnFactura = false;
+                        if (factura.Rows != null)
+                        {
+                            foreach (DataGridViewRow row in factura.Rows)
+                            {
+                                if (row.Cells["Codigo"].Value != null && row.Cells["Quantity"].Value != null &&
+                                    row.Cells["Column3"].Value != null && row.Cells["Total"].Value != null &&
+                                    row.Cells["Column5"].Value != null)
+                                {
+                                    if (row.Cells["Codigo"].Value.ToString() == buscador)
+                                    {
+                                        double cantidadActual = Convert.ToDouble(row.Cells["Quantity"].Value);
+                                        double nuevaCantidad = cantidadActual + cantidad;
+
+                                        // Actualizar la cantidad en la fila existente
+                                        row.Cells["Quantity"].Value = nuevaCantidad;
+                                        row.Cells["Total"].Value = (nuevaCantidad * precioUnitario).ToString("N2");
+                                        existeEnFactura = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!existeEnFactura)
+                        {
+                            DataGridViewRow newRow = (DataGridViewRow)factura.Rows[0].Clone();
+                            newRow.Cells[0].Value = producto.Codigo;
+                            newRow.Cells[1].Value = producto.Nombre;
+                            newRow.Cells[2].Value = cantidad;
+                            newRow.Cells[3].Value = producto.UnidadDeMedida;
+                            newRow.Cells[4].Value = precioUnitario;
+                            newRow.Cells[5].Value = totalLinea;
+                            newRow.Cells[6].Value = IVA;
+
+                            factura.Rows.Add(newRow);
+                        }
+
                         restarProducto(buscador, cantidad);
                         break;
                     }
@@ -260,28 +300,44 @@ namespace sistemaCompra
             }
             refrescarPrecio();
         }
+        private void agregarProducto(string codigoProducto, double cantidadDevuelta)
+        {
+            string pathProductos = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inventario.csv");
+            string[] lines = File.ReadAllLines(pathProductos);
+            List<string> output = new List<string>();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                string[] values = line.Split(',');
+                if (values[0] == codigoProducto)
+                {
+                    long currentCantidad = Convert.ToInt64(values[2]);
+                    long updatedCantidad = currentCantidad + Convert.ToInt64(cantidadDevuelta);
+                    values[2] = updatedCantidad.ToString();
+                    lines[i] = string.Join(",", values); // Actualizar la línea con los valores modificados
+                }
+                output.Add(lines[i]);
+            }
+
+            File.WriteAllLines(pathProductos, output.ToArray());
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0 && factura.Columns[e.ColumnIndex].Name == "Eliminar" && e.RowIndex < factura.Rows.Count && !factura.Rows[e.RowIndex].IsNewRow)
             {
                 string codigo = factura.Rows[e.RowIndex].Cells["Codigo"].Value.ToString();
                 double cantidad = Convert.ToDouble(factura.Rows[e.RowIndex].Cells["Quantity"].Value);
-                reStock(codigo, cantidad);
-                factura.Rows.RemoveAt(e.RowIndex);
-                refrescarPrecio();
-            }
-        }
 
-        private void reStock(string codigo, double cantidad)
-        {
-            foreach (Producto producto in productos)
-            {
-                if (codigo == producto.Codigo)
-                {
-                    producto.Cantidad = producto.Cantidad + cantidad;
-                    break;
-                }
+                // Agregar la cantidad devuelta al stock del inventario
+                agregarProducto(codigo, cantidad);
+
+                // Eliminar la fila del DataGridView
+                factura.Rows.RemoveAt(e.RowIndex);
+
+                // Actualizar los precios y visualización en la factura
+                refrescarPrecio();
             }
         }
 
@@ -294,6 +350,10 @@ namespace sistemaCompra
         {
 
         }
+        // Declarar una variable global para almacenar el número de facturas
+        private int numeroFacturas = 0;
+
+        // Actualizar la función ObtenerNumeroFactura() de la siguiente manera:
         private int ObtenerNumeroFactura()
         {
             string pathContador = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "contador_facturas.csv");
@@ -304,26 +364,39 @@ namespace sistemaCompra
                     sw.WriteLine("numero_facturas");
                     sw.WriteLine("0");
                 }
-                return 0;
-            }
-
-            string[] lines = File.ReadAllLines(pathContador);
-            int numeroFacturas;
-            if (int.TryParse(lines[1], out numeroFacturas))
-            {
-                numeroFacturas++;
-                using (StreamWriter sw = new StreamWriter(pathContador, false))
-                {
-                    sw.WriteLine("numero_facturas");
-                    sw.WriteLine(numeroFacturas.ToString());
-                }
-                return numeroFacturas;
+                numeroFacturas = 0;
             }
             else
             {
-                // Manejo de errores si no se puede leer el número de facturas
-                throw new Exception("No se pudo leer el número de facturas.");
+                string[] lines = File.ReadAllLines(pathContador);
+                if (int.TryParse(lines[1], out int tempNumeroFacturas))
+                {
+                    numeroFacturas = tempNumeroFacturas + 1;
+                    using (StreamWriter sw = new StreamWriter(pathContador, false))
+                    {
+                        sw.WriteLine("numero_facturas");
+                        sw.WriteLine(numeroFacturas.ToString());
+                    }
+                }
+                else
+                {
+                    // Manejo de errores si no se puede leer el número de facturas
+                    throw new Exception("No se pudo leer el número de facturas.");
+                }
             }
+            return numeroFacturas;
+        }
+        private List<string> VerificarCantidadMinima()
+        {
+            List<string> productosBajoMinimo = new List<string>();
+            foreach (Producto producto in productos)
+            {
+                if (producto.Cantidad < producto.CantidadMinima)
+                {
+                    productosBajoMinimo.Add(producto.Nombre);
+                }
+            }
+            return productosBajoMinimo;
         }
         private void ImprimirFactura_Click(object sender, EventArgs e)
         {
@@ -341,9 +414,6 @@ namespace sistemaCompra
                 {
                     Directory.CreateDirectory(pathFacturas);
                 }
-
-                // Generar un código único para la factura
-                string codigoFactura = Guid.NewGuid().ToString();
 
                 // Nombre y apellido del cliente
                 string nombreCliente = $"{nombreTB.Text}";
@@ -378,9 +448,6 @@ namespace sistemaCompra
                 fecha.Alignment = Element.ALIGN_CENTER;
                 doc.Add(fecha);
 
-                // Obtener el número de factura
-                int numero_Factura = ObtenerNumeroFactura();
-
                 // Agregar número de factura al documento PDF
                 Paragraph numeroFacturaParagraph = new Paragraph($"Factura N°: {numeroFactura}\n\n");
                 numeroFacturaParagraph.Alignment = Element.ALIGN_CENTER;
@@ -392,9 +459,15 @@ namespace sistemaCompra
                 doc.Add(encabezado);
 
                 // Agregar detalles del cliente
-                Paragraph datosCliente = new Paragraph($"Nombre: {nombreCliente} {apellidoCliente}\nDirección: {direccionTB.Text}\nTeléfono: {telefonoTB.Text}\nCedula: {tipoDeDocumentoCB.Text}{textBoxCliente.Text}\n\n");
+                Paragraph datosCliente = new Paragraph($"Nombre: {nombreCliente} {apellidoCliente}\nDirección: {direccionTB.Text}\nTeléfono: {telefonoTB.Text}\nCedula: {tipoDeDocumentoCB.Text}{textBoxCliente.Text}\n");
                 datosCliente.Alignment = Element.ALIGN_LEFT;
                 doc.Add(datosCliente);
+
+                // Agregar si es Contribuyente Especial o no
+                string esContribuyenteTexto = esContribuyenteEspecial ? "Contribuyente Especial: Sí\n\n" : "Contribuyente Especial: No\n\n";
+                Paragraph contribuyenteEspecialParagraph = new Paragraph(esContribuyenteTexto);
+                contribuyenteEspecialParagraph.Alignment = Element.ALIGN_LEFT;
+                doc.Add(contribuyenteEspecialParagraph);
 
                 // Agregar detalles de la compra y cálculos
                 double subtotal = 0;
@@ -403,64 +476,94 @@ namespace sistemaCompra
                 table.AddCell("Código");
                 table.AddCell("Nombre");
                 table.AddCell("Cantidad");
-                table.AddCell("Precio Unitario");
+                table.AddCell("Precio");
                 table.AddCell("Total");
                 table.AddCell("IVA");
 
+
+                // Ajustar cálculos del subtotal y el total del IVA
                 foreach (DataGridViewRow fila in factura.Rows)
                 {
                     if (!fila.IsNewRow)
                     {
+
                         string codigo = fila.Cells["Codigo"].Value.ToString();
                         string nombre = fila.Cells["Column1"].Value.ToString();
-                        string cantidad = fila.Cells["Quantity"].Value.ToString();
-                        string precioUnitario = fila.Cells["Column3"].Value.ToString();
-                        string total = fila.Cells["Total"].Value.ToString();
-                        string iva = fila.Cells["Column5"].Value.ToString();
+                        double cantidad = Convert.ToDouble(fila.Cells["Quantity"].Value);
+                        double precioUnitario = Convert.ToDouble(fila.Cells["Column3"].Value);
+                        double totalLinea = cantidad * precioUnitario;
 
+                        subtotal += totalLinea;
+
+                        string ivaText = fila.Cells["Column5"].Value.ToString();
+                        if (ivaText == "16%")
+                        {
+                            totalIVA += totalLinea * 0.16; // Calcular el total del IVA asumiendo 16%
+                        }
+
+                        // Agregar elementos a la tabla
                         table.AddCell(codigo);
                         table.AddCell(nombre);
-                        table.AddCell(cantidad);
-                        table.AddCell(precioUnitario);
-                        table.AddCell(total);
-                        table.AddCell(iva);
-
-                        double totalLinea = Convert.ToDouble(total);
-                        subtotal += totalLinea;
-                        if (iva == "16%")
-                        {
-                            totalIVA += totalLinea * 0.16;
-                        }
+                        table.AddCell(cantidad.ToString());
+                        table.AddCell(precioUnitario.ToString("N2"));
+                        table.AddCell(totalLinea.ToString("N2"));
+                        table.AddCell(ivaText);
                     }
                 }
 
                 doc.Add(table);
 
-                // Agregar sub total, IVA, total y monto en divisas
-                doc.Add(new Paragraph("\n"));
-                doc.Add(new Paragraph($"Subtotal: {subtotal.ToString("N2")} Bs.D"));
-                doc.Add(new Paragraph($"Total IVA: {totalIVA.ToString("N2")} Bs.D"));
+                // Mostrar el subtotal y el total del IVA en la factura
+                doc.Add(new Paragraph($"Subtotal: {subtotal.ToString("N2")} Bs.D\n"));
+                doc.Add(new Paragraph($"Total IVA: {totalIVA.ToString("N2")} Bs.D\n"));
+
 
                 double tipoCambio = tipoCambioGlobal;
                 double totalEnDolares = subtotal / tipoCambio;
+                if (esContribuyenteEspecial)
+                {
+                    double totalConImpuestos = subtotal + totalIVA; // Calcular el total con impuestos
+                    doc.Add(new Paragraph($"Total con Impuestos: {totalConImpuestos.ToString("N2")} Bs.D\n"));
+                }
                 doc.Add(new Paragraph(label4.Text));
                 doc.Add(new Paragraph($"Total en dólares: {totalEnDolares:f2} $"));
+
+                // Agregar un mensaje de agradecimiento centrado al final de la factura
+                Paragraph agradecimiento = new Paragraph("\n\nGracias por su compra. Esperamos verlo de nuevo pronto.");
+                agradecimiento.Alignment = Element.ALIGN_CENTER;
+                doc.Add(agradecimiento);
+
                 // Cerrar el documento
                 doc.Close();
                 MessageBox.Show($"Factura generada con éxito. Puede encontrarla en la carpeta Facturas.");
-                Musica.PlayLooping(); 
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ha ocurrido un error al generar la factura: {ex.Message}");
             }
+            LimpiarFormulario();
+        }
+        private void LimpiarFormulario()
+        {
+            // Limpiar el contenido de los controles relevantes
+            nombreTB.Text = "";
+            textBoxCliente.Text = "";
+            apellidoTB.Text = "";
+            telefonoTB.Text = "";
+            emailTB.Text = "";
+            direccionTB.Text = "";
+            tipoDeDocumentoCB.Text = "";
+            Si.Checked = false;
+            No.Checked = false;
+            textBox2.Text = "";
+            cantidadTB.Text = "";
+            factura.Rows.Clear();
+            refrescarPrecio(); // Restablecer los precios y visualización en la factura
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             VerificarCantidadDisponible();
-            Musica.Stop();
             this.Hide();
         }
 
@@ -586,9 +689,6 @@ namespace sistemaCompra
         {
 
         }
-
-
-
         private void Dolar_TextChanged(object sender, EventArgs e)
         {
             // Asegúrate de que el valor ingresado sea un número válido
@@ -703,22 +803,6 @@ namespace sistemaCompra
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al intentar abrir la carpeta de facturas: {ex.Message}");
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            if (playing == playing % 2)
-            {
-                Musica.PlayLooping();
-                playing++;
-                pictureBox1.Image = Properties.Resources.IconoMusicaEncendida;
-            }
-            if (playing != playing % 2)
-            {
-                Musica.Stop();
-                playing = 0;
-                pictureBox1.Image = Properties.Resources.IconoMusicaApagar;
             }
         }
     }

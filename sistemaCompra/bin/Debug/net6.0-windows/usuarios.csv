@@ -1,5 +1,5 @@
 Nombre de Usuario,Correo Electronico,Password,Tipo de Usuario
-admin,admin,admin,Admin
-supersu,supersu,supersu,Superuser
-cajero,cajero,cajero,Cajero
-cajero3,cajero3@gmail.com,cajero3,Cajero
+admin,admin@gmail.com,admin,Admin
+supersu,supersu@gmail.com,supersu,Superuser
+cajero,cajero@gmail.com,cajero,Cajero
+Manuel,manelequintero@gmail.com,Pocoloc0,Cajero

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace sistemaCompra
 {
@@ -42,82 +43,67 @@ namespace sistemaCompra
         private void LoadData()
         {
             dtgvListaUsuarios.Rows.Clear(); // Limpiar filas existentes si las hay
-            List<string> nombresUsuarios = new List<string>(); // Lista para almacenar nombres de usuario existentes
 
             try
             {
-                using (var reader = new StreamReader(filePath))
+                var lines = File.ReadAllLines(filePath);
+                var usuariosData = lines
+                    .Skip(1)
+                    .Select(line => line.Split(','))
+                    .Where(values => values.Length >= 4 && values[3].Trim().ToLower() == "cajero") // Filtrar usuarios tipo "Cajero"
+                    .Select(values => new
+                    {
+                        NombreUsuario = values[0],
+                        CorreoElectronico = values[1],
+                        Password = values[2],
+                        TipoUsuario = values[3]
+                    })
+                    .ToList();
+
+                foreach (var usuario in usuariosData)
                 {
-                    bool isFirstLine = true; // Bandera para identificar la primera línea
+                    int existingRowIndex = dtgvListaUsuarios.Rows
+                        .Cast<DataGridViewRow>()
+                        .FirstOrDefault(row => row.Cells[2].Value != null && row.Cells[2].Value.ToString() == usuario.NombreUsuario)?.Index ?? -1;
 
-                    while (!reader.EndOfStream)
+                    if (existingRowIndex != -1)
                     {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-
-                        if (isFirstLine)
-                        {
-                            isFirstLine = false;
-                            continue; // Omitir la primera línea si contiene encabezados
-                        }
-
-                        if (values.Length >= 4 && values[3].Trim().ToLower() == "cajero") // Verificar el tipo de usuario
-                        {
-                            string nombreUsuario = values[0];
-                            string correoElectronico = values[1];
-                            string password = values[2];
-                            string tipoUsuario = values[3];
-
-                            // Verificar si el nombre de usuario ya existe en la lista
-                            int existingRowIndex = -1;
-                            for (int i = 0; i < dtgvListaUsuarios.Rows.Count; i++)
-                            {
-                                if (dtgvListaUsuarios.Rows[i].Cells[2].Value != null && dtgvListaUsuarios.Rows[i].Cells[2].Value.ToString() == nombreUsuario)
-                                {
-                                    existingRowIndex = i;
-                                    break;
-                                }
-                            }
-
-                            // Si el nombre de usuario ya existe, actualizar la fila, de lo contrario, agregar una nueva fila
-                            if (existingRowIndex != -1)
-                            {
-                                dtgvListaUsuarios.Rows[existingRowIndex].SetValues("Editar", "Eliminar", nombreUsuario, correoElectronico, password, tipoUsuario);
-                            }
-                            else
-                            {
-                                dtgvListaUsuarios.Rows.Add("Editar", "Eliminar", nombreUsuario, correoElectronico, password, tipoUsuario);
-                                nombresUsuarios.Add(nombreUsuario);
-                            }
-                        }
+                        dtgvListaUsuarios.Rows[existingRowIndex].SetValues("Editar", "Eliminar", usuario.NombreUsuario, usuario.CorreoElectronico, usuario.Password, usuario.TipoUsuario);
                     }
-
-                    // Obtener la ruta del directorio del programa
-                    string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
-
-                    // Agregar botones de edición y eliminación a cada fila
-                    for (int i = 0; i < dtgvListaUsuarios.Rows.Count; i++)
+                    else
                     {
-                        // Botón de Edición
-                        DataGridViewImageCell imgEdit = new DataGridViewImageCell();
-                        string imagePathEdit = Path.Combine(directoryPath, "Edicion.png");
-                        Image imageEdit = Image.FromFile(imagePathEdit);
-                        imgEdit.Value = imageEdit;
-                        imgEdit.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
-                        imgEdit.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
-                        dtgvListaUsuarios.Rows[i].Cells[0] = imgEdit;
-
-                        // Botón de Eliminación
-                        DataGridViewImageCell imgDelete = new DataGridViewImageCell();
-                        string imagePathDelete = Path.Combine(directoryPath, "Eliminacion.png");
-                        Image imageDelete = Image.FromFile(imagePathDelete);
-                        imgDelete.Value = imageDelete;
-                        imgDelete.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
-                        imgDelete.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
-                        dtgvListaUsuarios.Rows[i].Cells[1] = imgDelete;
+                        dtgvListaUsuarios.Rows.Add("Editar", "Eliminar", usuario.NombreUsuario, usuario.CorreoElectronico, usuario.Password, usuario.TipoUsuario);
                     }
-
                 }
+
+                // Obtener la ruta del directorio del programa
+                string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                // Agregar botones de edición y eliminación a cada fila
+                for (int i = 0; i < dtgvListaUsuarios.Rows.Count; i++)
+                {
+                    // Botón de Edición
+                    DataGridViewImageCell imgEdit = new DataGridViewImageCell();
+                    string imagePathEdit = Path.Combine(directoryPath, "Edicion.png");
+                    Image imageEdit = Image.FromFile(imagePathEdit);
+                    imgEdit.Value = imageEdit;
+                    imgEdit.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
+                    imgEdit.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
+                    dtgvListaUsuarios.Rows[i].Cells[0] = imgEdit;
+
+                    // Botón de Eliminación
+                    DataGridViewImageCell imgDelete = new DataGridViewImageCell();
+                    string imagePathDelete = Path.Combine(directoryPath, "Eliminacion.png");
+                    Image imageDelete = Image.FromFile(imagePathDelete);
+                    imgDelete.Value = imageDelete;
+                    imgDelete.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
+                    imgDelete.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
+                    dtgvListaUsuarios.Rows[i].Cells[1] = imgDelete;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("El archivo de datos no se encuentra. Asegúrese de que exista y vuelva a intentarlo.");
             }
             catch (Exception ex)
             {
@@ -233,31 +219,39 @@ namespace sistemaCompra
                 {
                     if (newPassword.Length >= 4)
                     {
-                        bool usuarioEncontrado = false;
-                        string[] lines = File.ReadAllLines(filePath);
-                        for (int i = 1; i < lines.Length; i++)
+                        try
                         {
-                            string[] values = lines[i].Split(',');
-                            if (values.Length >= 3 && values[0].Trim().ToLower() == nombre.ToLower())
+                            var lines = File.ReadAllLines(filePath).ToList();
+                            bool usuarioEncontrado = false;
+
+                            for (int i = 1; i < lines.Count; i++)
                             {
-                                lines[i] = $"{nombre},{txtCorreo.Text},{newPassword},{tipoUsuario}";
-                                usuarioEncontrado = true;
-                                File.WriteAllLines(filePath, lines);
-                                LoadData();
-                                pnlDesplegar.Visible = false;
-                                MessageBox.Show("Usuario editado con éxito.");
-                                // Limpiar los campos de entrada
-                                txtNombre.Text = "";
-                                txtPassword.Text = "";
-                                txtConfirmarPassword.Text = "";
-                                txtCorreo.Text = "";
-                                break;
+                                var values = lines[i].Split(',');
+                                if (values.Length >= 3 && values[0].Trim().ToLower() == nombre.ToLower())
+                                {
+                                    lines[i] = $"{nombre},{txtCorreo.Text},{newPassword},{tipoUsuario}";
+                                    usuarioEncontrado = true;
+                                    File.WriteAllLines(filePath, lines);
+                                    LoadData();
+                                    pnlDesplegar.Visible = false;
+                                    MessageBox.Show("Usuario editado con éxito.");
+                                    // Limpiar los campos de entrada
+                                    txtNombre.Text = "";
+                                    txtPassword.Text = "";
+                                    txtConfirmarPassword.Text = "";
+                                    txtCorreo.Text = "";
+                                    break;
+                                }
+                            }
+
+                            if (!usuarioEncontrado)
+                            {
+                                MessageBox.Show("No se encontró ningún usuario con ese nombre. Por favor, intente con un nombre de usuario existente.");
                             }
                         }
-
-                        if (!usuarioEncontrado)
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("No se encontró ningún usuario con ese nombre. Por favor, intente con un nombre de usuario existente.");
+                            MessageBox.Show($"Error al editar el usuario: {ex.Message}");
                         }
                     }
                     else
@@ -275,8 +269,6 @@ namespace sistemaCompra
                 MessageBox.Show("Por favor, complete todos los campos.");
             }
         }
-
-
 
         private void dtgvListaUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -361,6 +353,79 @@ namespace sistemaCompra
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBuscarNombre_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtBuscarNombre.Text.ToLower();
+
+            try
+            {
+                var lines = File.ReadAllLines(filePath);
+                var usuariosData = lines
+                    .Skip(1)
+                    .Select(line => line.Split(','))
+                    .Where(values => values.Length >= 4 && values[3].Trim().ToLower() == "cajero") // Filtrar usuarios tipo "Cajero"
+                    .Select(values => new
+                    {
+                        NombreUsuario = values[0],
+                        CorreoElectronico = values[1],
+                        Password = values[2],
+                        TipoUsuario = values[3]
+                    })
+                    .Where(usuario => usuario.NombreUsuario.ToLower().Contains(searchTerm)) // Filtrar según el término de búsqueda
+                    .ToList();
+
+                dtgvListaUsuarios.Rows.Clear(); // Limpiar filas existentes si las hay
+                foreach (var usuario in usuariosData)
+                {
+                    int existingRowIndex = dtgvListaUsuarios.Rows
+                        .Cast<DataGridViewRow>()
+                        .FirstOrDefault(row => row.Cells[2].Value != null && row.Cells[2].Value.ToString() == usuario.NombreUsuario)?.Index ?? -1;
+
+                    if (existingRowIndex != -1)
+                    {
+                        dtgvListaUsuarios.Rows[existingRowIndex].SetValues("Editar", "Eliminar", usuario.NombreUsuario, usuario.CorreoElectronico, usuario.Password, usuario.TipoUsuario);
+                    }
+                    else
+                    {
+                        dtgvListaUsuarios.Rows.Add("Editar", "Eliminar", usuario.NombreUsuario, usuario.CorreoElectronico, usuario.Password, usuario.TipoUsuario);
+                    }
+                }
+
+                // Obtener la ruta del directorio del programa
+                string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                // Agregar botones de edición y eliminación a cada fila
+                for (int i = 0; i < dtgvListaUsuarios.Rows.Count; i++)
+                {
+                    // Botón de Edición
+                    DataGridViewImageCell imgEdit = new DataGridViewImageCell();
+                    string imagePathEdit = Path.Combine(directoryPath, "Edicion.png");
+                    Image imageEdit = Image.FromFile(imagePathEdit);
+                    imgEdit.Value = imageEdit;
+                    imgEdit.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
+                    imgEdit.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
+                    dtgvListaUsuarios.Rows[i].Cells[0] = imgEdit;
+
+                    // Botón de Eliminación
+                    DataGridViewImageCell imgDelete = new DataGridViewImageCell();
+                    string imagePathDelete = Path.Combine(directoryPath, "Eliminacion.png");
+                    Image imageDelete = Image.FromFile(imagePathDelete);
+                    imgDelete.Value = imageDelete;
+                    imgDelete.ImageLayout = DataGridViewImageCellLayout.Zoom; // Ajustar el diseño de la imagen
+                    imgDelete.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centrar la imagen
+                    dtgvListaUsuarios.Rows[i].Cells[1] = imgDelete;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("El archivo de datos no se encuentra. Asegúrese de que exista y vuelva a intentarlo.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos: {ex.Message}");
+            }
         }
     }
 }

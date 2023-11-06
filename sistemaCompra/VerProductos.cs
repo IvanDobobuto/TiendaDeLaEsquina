@@ -14,6 +14,7 @@ namespace sistemaCompra
     {
         private DataTable originalDt; // Mantener una copia del DataTable original para poder restablecer los datos
 
+
         public VerProductos()
         {
             InitializeComponent();
